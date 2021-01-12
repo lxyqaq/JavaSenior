@@ -42,10 +42,14 @@ public class ThreadMethodTest {
         //thread01.setName("thread01);
         HelloThread thread01 = new HelloThread("thread01");
 
+        //设置优先级
+        thread01.setPriority(Thread.MAX_PRIORITY);
+
         thread01.start();
 
         //给主线程命名
         Thread.currentThread().setName("主线程");
+        Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
 
         for (int i = 0; i < 100; i++) {
 
