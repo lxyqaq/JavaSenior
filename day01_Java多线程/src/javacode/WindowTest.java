@@ -9,7 +9,7 @@ package javacode;
  */
 
 /**
- * 三个窗口买票，存在线程安全问题
+ * 三个窗口买票，存在线程安全问题，需要解决
  */
 public class WindowTest {
     public static void main(String[] args) {
