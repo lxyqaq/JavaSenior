@@ -96,8 +96,8 @@ public class FileTest {
 
     /**
      * public boolean renameTo(File dest):把文件重命名为指定的文件路径
-     *      比如：file1.renameTo(file2)为例：
-     *         要想保证返回true,需要file1在硬盘中是存在的，且file2不能在硬盘中存在。
+     * 比如：file1.renameTo(file2)为例：
+     * 要想保证返回true,需要file1在硬盘中是存在的，且file2不能在硬盘中存在。
      */
     @Test
     public void test4() {
@@ -108,6 +108,38 @@ public class FileTest {
         boolean renameTo = file1.renameTo(file2);
 
         System.out.println(renameTo);
+
+    }
+
+    /**
+     * public boolean isDirectory()：判断是否是文件目录
+     * public boolean isFile() ：判断是否是文件
+     * public boolean exists() ：判断是否存在
+     * public boolean canRead() ：判断是否可读
+     * public boolean canWrite() ：判断是否可写
+     * public boolean isHidden() ：判断是否隐藏
+     */
+    @Test
+    public void test5() {
+
+        File file1 = new File("hi.txt");
+
+        System.out.println(file1.isDirectory());
+        System.out.println(file1.isFile());
+        System.out.println(file1.exists());
+        System.out.println(file1.canRead());
+        System.out.println(file1.canWrite());
+        System.out.println(file1.isHidden());
+
+        System.out.println("******************");
+
+        File file2 = new File("/Users/lxyqaq/IdeaProjects/JavaSenior");
+        System.out.println(file2.isDirectory());
+        System.out.println(file2.isFile());
+        System.out.println(file2.exists());
+        System.out.println(file2.canRead());
+        System.out.println(file2.canWrite());
+        System.out.println(file2.isHidden());
 
     }
 
