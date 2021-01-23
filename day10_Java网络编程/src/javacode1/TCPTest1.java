@@ -17,6 +17,11 @@ import java.net.Socket;
  * @Date 2021/1/23 16:41
  * @Version 1.0
  */
+
+/**
+ * 实现TCP的网络编程
+ * 例子1：客户端发送信息给服务端，服务端将数据显示在控制台上
+ */
 public class TCPTest1 {
 
     @Test
