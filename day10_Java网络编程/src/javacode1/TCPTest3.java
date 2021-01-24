@@ -24,12 +24,13 @@ public class TCPTest3 {
 
     /**
      * 这里涉及到的异常，应该使用try-catch-finally处理
-      * @throws IOException
+     *
+     * @throws IOException
      */
     @Test
     public void client() throws IOException {
         //1.
-        Socket socket = new Socket(InetAddress.getByName("127.0.0.1"),9090);
+        Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 9090);
         //2.
         OutputStream os = socket.getOutputStream();
         //3.
@@ -37,8 +38,8 @@ public class TCPTest3 {
         //4.
         byte[] buffer = new byte[1024];
         int len;
-        while((len = fis.read(buffer)) != -1){
-            os.write(buffer,0,len);
+        while ((len = fis.read(buffer)) != -1) {
+            os.write(buffer, 0, len);
         }
         //关闭数据的输出
         socket.shutdownOutput();
@@ -48,8 +49,8 @@ public class TCPTest3 {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] bufferr = new byte[20];
         int len1;
-        while((len1 = is.read(buffer)) != -1){
-            baos.write(buffer,0,len1);
+        while ((len1 = is.read(buffer)) != -1) {
+            baos.write(buffer, 0, len1);
         }
 
         System.out.println(baos.toString());
@@ -63,6 +64,7 @@ public class TCPTest3 {
 
     /**
      * 这里涉及到的异常，应该使用try-catch-finally处理
+     *
      * @throws IOException
      */
     @Test
@@ -78,8 +80,8 @@ public class TCPTest3 {
         //5.
         byte[] buffer = new byte[1024];
         int len;
-        while((len = is.read(buffer)) != -1){
-            fos.write(buffer,0,len);
+        while ((len = is.read(buffer)) != -1) {
+            fos.write(buffer, 0, len);
         }
 
         System.out.println("图片传输完成");
