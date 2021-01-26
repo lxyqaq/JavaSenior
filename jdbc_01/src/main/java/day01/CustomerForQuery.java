@@ -109,4 +109,62 @@ public class CustomerForQuery {
 
     }
 
+    /**
+     * @param sql
+     * @param args
+     * @return bean.Customer
+     * @throws
+     * @throws
+     * @description 对Customer表的通用操作
+     * @author lxyqaq @email A00279565@student.ait.ie
+     * @date 2021/1/26 20:40
+     */
+    public Customer queryForCustomer(String sql, Object... args) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = JDBCUtils.getConnection();
+
+            ps = conn.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                ps.setObject(i + 1, args[i]);
+            }
+
+            rs = ps.executeQuery();
+            //获取结果集的元数据 :ResultSetMetaData
+            ResultSetMetaData rsmd = rs.getMetaData();
+            //通过ResultSetMetaData获取结果集中的列数
+            int columnCount = rsmd.getColumnCount();
+
+            if (rs.next()) {
+                Customer cust = new Customer();
+                //处理结果集一行数据中的每一个列
+                for (int i = 0; i < columnCount; i++) {
+                    //获取列值
+                    Object columValue = rs.getObject(i + 1);
+
+                    //获取每个列的列名
+//					String columnName = rsmd.getColumnName(i + 1);
+                    String columnLabel = rsmd.getColumnLabel(i + 1);
+
+                    //给cust对象指定的columnName属性，赋值为columValue：通过反射
+                    Field field = Customer.class.getDeclaredField(columnLabel);
+                    field.setAccessible(true);
+                    field.set(cust, columValue);
+                }
+                return cust;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, ps, rs);
+
+        }
+
+        return null;
+
+
+    }
+
 }
