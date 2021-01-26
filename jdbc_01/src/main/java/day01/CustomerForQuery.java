@@ -113,8 +113,6 @@ public class CustomerForQuery {
      * @param sql
      * @param args
      * @return bean.Customer
-     * @throws
-     * @throws
      * @description 对Customer表的通用操作
      * @author lxyqaq @email A00279565@student.ait.ie
      * @date 2021/1/26 20:40
