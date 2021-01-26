@@ -159,11 +159,9 @@ public class CustomerForQuery {
             e.printStackTrace();
         } finally {
             JDBCUtils.closeResource(conn, ps, rs);
-
         }
 
         return null;
-
 
     }
 
