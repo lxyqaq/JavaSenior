@@ -62,8 +62,6 @@ public class CustomerDAOImplTest {
             conn = JDBCUtils.getConnection();
             Customer cust = new Customer(18, "贝多芬", "beiduofen@126.com", new Date(453465656L));
             dao.update(conn, cust);
-
-
             System.out.println("修改成功");
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,15 +77,13 @@ public class CustomerDAOImplTest {
         try {
             conn = JDBCUtils.getConnection3();
 
-            Customer cust = dao.getCustomerById(conn, 19);
+            Customer cust = dao.getCustomerById(conn, 18);
             System.out.println(cust);
-
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             JDBCUtils.closeResource(conn, null);
-
         }
     }
 

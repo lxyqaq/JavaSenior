@@ -1,5 +1,8 @@
 package util;
 
+import com.alibaba.druid.pool.DruidDataSourceFactory;
+
+import javax.sql.DataSource;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
@@ -88,6 +91,30 @@ public class JDBCUtils {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 使用Druid数据库连接池技术
+     */
+    private static DataSource source1;
+
+    static {
+        try {
+            Properties pros = new Properties();
+
+            InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("druid.properties");
+
+            pros.load(is);
+
+            source1 = DruidDataSourceFactory.createDataSource(pros);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Connection getConnection3() throws SQLException {
+        Connection conn = source1.getConnection();
+        return conn;
     }
 
 }
