@@ -60,8 +60,10 @@ public class CollectionTest1 {
         System.out.println(remove1);
         System.out.println(coll);
 
-        //4.removeAll(Collection coll):从当前集合中移除coll1中所有的元素
-
+        //4.removeAll(Collection coll):差集:从当前集合中移除coll1中所有的元素
+        Collection coll1 = Arrays.asList(123, 456);
+        coll.removeAll(coll1);
+        System.out.println(coll);
 
     }
 
