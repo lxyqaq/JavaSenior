@@ -67,4 +67,30 @@ public class CollectionTest1 {
 
     }
 
+    @Test
+    public void test3() {
+        Collection coll = new ArrayList();
+        coll.add(123);
+        coll.add(456);
+        coll.add(new Person("Jerry", 20));
+        coll.add(new String("Tom"));
+        coll.add(false);
+
+        //5.retainAll(Collection coll):交集:获取当前集合和coll1集合的交集，并返回给当前集合
+//        Collection coll1 = Arrays.asList(123, 456, 789);
+//        coll.retainAll(coll1);
+//        System.out.println(coll);
+
+        //6.equals(Object obj):判断当前集合和形参
+        Collection coll1 = new ArrayList();
+        coll1.add(456);
+        coll1.add(123);
+        coll1.add(new Person("Jerry", 20));
+        coll1.add(new String("Tom"));
+        coll1.add(false);
+
+        System.out.println(coll.equals(coll1));
+
+    }
+
 }
