@@ -58,4 +58,34 @@ public class IteratorTest {
 
     }
 
+    //测试Iterator中的remove()
+    //如果还未调用next()或在上一次调用 next 方法之后已经调用了 remove 方法，
+    // 再调用remove都会报IllegalStateException。
+    @Test
+    public void test2() {
+        Collection coll = new ArrayList();
+        coll.add(123);
+        coll.add(456);
+        coll.add(new Person("Jerry", 20));
+        coll.add(new String("Tom"));
+        coll.add(false);
+
+        //删除集合中"Tom"
+        Iterator iterator = coll.iterator();
+        while (iterator.hasNext()) {
+//            iterator.remove();
+            Object obj = iterator.next();
+            if ("Tom".equals(obj)) {
+                iterator.remove();
+//                iterator.remove();
+            }
+
+        }
+        //遍历集合
+        iterator = coll.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
 }
