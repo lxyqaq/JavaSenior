@@ -44,4 +44,25 @@ public class ForTest {
 
     }
 
+    @Test
+    public void test3() {
+
+        String[] arr = new String[]{"MM", "MM", "MM"};
+
+//        //方式一：普通for赋值
+//        for(int i = 0;i < arr.length;i++){
+//            arr[i] = "GG";
+//        }
+
+        //方式二：增强for循环
+        for (String s : arr) {
+            s = "GG";
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+
+    }
+
 }
