@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -151,6 +152,32 @@ public class ListTest {
         List list1 = list.subList(1, 3);
         System.out.println(list1);
         System.out.println(list);
+
+    }
+
+    @Test
+    public void test3() {
+
+        ArrayList list = new ArrayList();
+        list.add(123);
+        list.add(456);
+        list.add("AA");
+
+        //方式一: Iterator迭代器方式
+        Iterator iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        //方式二: 增强for循环
+        for (Object obj : list) {
+            System.out.println(obj);
+        }
+
+        //方式三: 普通for循环
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
 
     }
 
