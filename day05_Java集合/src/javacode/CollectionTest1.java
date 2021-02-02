@@ -42,4 +42,27 @@ public class CollectionTest1 {
 
     }
 
+    @Test
+    public void test2() {
+
+        //3.remove(Object obj):从当前集合中移除obj元素
+        Collection coll = new ArrayList();
+        coll.add(123);
+        coll.add(456);
+        coll.add(new Person("Jerry", 20));
+        coll.add(new String("Tom"));
+        coll.add(false);
+
+        System.out.println(coll);
+        boolean remove = coll.remove(456);
+        System.out.println(remove);
+        boolean remove1 = coll.remove(new Person("Jerry", 20));
+        System.out.println(remove1);
+        System.out.println(coll);
+
+        //4.removeAll(Collection coll):从当前集合中移除coll1中所有的元素
+
+
+    }
+
 }
