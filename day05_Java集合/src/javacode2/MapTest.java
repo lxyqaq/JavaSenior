@@ -190,6 +190,28 @@ public class MapTest {
             System.out.println(iterator1.next());
         }
 
+        //遍历所有的key-value
+        //方式一：entrySet()
+        Set entrySet1 = map.entrySet();
+        Iterator iterator2 = entrySet1.iterator();
+        while (iterator2.hasNext()){
+            Object obj = iterator2.next();
+            //entrySet集合中的元素都是entry
+            Map.Entry entry = (Map.Entry) obj;
+            System.out.println(entry.getKey() + "---->" + entry.getValue());
+
+        }
+        System.out.println();
+        //方式二：
+        Set keySet = map.keySet();
+        Iterator iterator3 = keySet.iterator();
+        while(iterator3.hasNext()){
+            Object key = iterator3.next();
+            Object value = map.get(key);
+            System.out.println(key + "=====" + value);
+
+        }
+
     }
 
 }
