@@ -2,8 +2,7 @@ package javacode2;
 
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @ClassName MapTest
@@ -159,6 +158,37 @@ public class MapTest {
         map.clear();
 
         System.out.println(map.isEmpty());
+
+    }
+
+    @Test
+    public void test3() {
+
+        Map map = new HashMap();
+        map.put("AA", 123);
+        map.put(45, 123);
+        map.put("BB", 34);
+
+        //遍历所有key集合
+        Set set = map.keySet();
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        //遍历所有value集合
+        Collection values = map.values();
+        for (Object o : values) {
+            System.out.println(o);
+        }
+
+        //遍历所有的key-value
+        //entrySet()
+        Set entrySet = map.entrySet();
+        Iterator iterator1 = entrySet.iterator();
+        while (iterator1.hasNext()) {
+            System.out.println(iterator1.next());
+        }
 
     }
 
