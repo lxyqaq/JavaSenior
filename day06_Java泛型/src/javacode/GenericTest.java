@@ -3,6 +3,7 @@ package javacode;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @ClassName GenericTest
@@ -56,7 +57,31 @@ public class GenericTest {
     @Test
     public void test2() {
 
+        ArrayList<Integer> list = new ArrayList<>();
+
+        list.add(57);
+        list.add(53);
+        list.add(52);
+        list.add(51);
+
+        for (Integer score : list) {
+
+            int mark = score;
+
+            System.out.println(mark);
+
+        }
+
+        Iterator<Integer> iterator = list.iterator();
+
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+
     }
+
+
 
 
 }
