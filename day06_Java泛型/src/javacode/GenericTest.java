@@ -2,8 +2,7 @@ package javacode;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * @ClassName GenericTest
@@ -81,7 +80,28 @@ public class GenericTest {
 
     }
 
+    @Test
+    public void test3() {
 
+        Map<String, Integer> map = new HashMap<>();
+
+        map.put("Tom", 87);
+        map.put("Jerry", 87);
+        map.put("Jack", 67);
+
+//        map.put(123,"ABC");
+        //泛型的嵌套
+        Set<Map.Entry<String, Integer>> entry = map.entrySet();
+        Iterator<Map.Entry<String, Integer>> iterator = entry.iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<String, Integer> e = iterator.next();
+            String key = e.getKey();
+            Integer value = e.getValue();
+            System.out.println(key + "----" + value);
+        }
+
+    }
 
 
 }
