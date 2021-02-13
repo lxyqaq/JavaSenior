@@ -48,7 +48,7 @@ public class QueryTableModel extends AbstractTableModel {
         stmt = stmt1;
         try {
             //Execute the query and store the result set and its metadata
-            rs = stmt.executeQuery("SELECT * FROM Details");
+            rs = stmt.executeQuery("SELECT * FROM perf");
             ResultSetMetaData meta = rs.getMetaData();
 
             //to get the number of columns

@@ -169,11 +169,11 @@ public class JDBCMainWindowContent extends JInternalFrame implements ActionListe
     public void initiate_db_conn() {
         try {
             // Load the JConnector Driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             // Specify the DB Name
-            String url = "jdbc:mysql://localhost:3306/BEng_Assign";
+            String url = "jdbc:mysql://localhost:3306/assign";
             // Connect to DB using DB URL, Username and password
-            con = DriverManager.getConnection(url, "root", "admin");
+            con = DriverManager.getConnection(url, "root", "19980128");
             //Create a generic statement which is passed to the TestInternalFrame1
             stmt = con.createStatement();
         } catch (Exception e) {
@@ -199,7 +199,7 @@ public class JDBCMainWindowContent extends JInternalFrame implements ActionListe
 
         if (target == insertButton) {
             try {
-                String updateTemp = "INSERT INTO details VALUES(" +
+                String updateTemp = "INSERT INTO perf VALUES(" +
                         null + ",'" + FirstNameTF.getText() + "','" + LastNameTF.getText() + "'," + AgeTF.getText() + ",'" + GenderTF.getText() + "','"
                         + PositionTF.getText() + "','" + DepartmentTF.getText() + "'," + RateTF.getText() + "," + HoursTF.getText() + ");";
 
@@ -214,7 +214,7 @@ public class JDBCMainWindowContent extends JInternalFrame implements ActionListe
         if (target == deleteButton) {
 
             try {
-                String updateTemp = "DELETE FROM details WHERE id = " + IDTF.getText() + ";";
+                String updateTemp = "DELETE FROM perf WHERE id = " + IDTF.getText() + ";";
                 stmt.executeUpdate(updateTemp);
 
             } catch (SQLException sqle) {
@@ -225,7 +225,7 @@ public class JDBCMainWindowContent extends JInternalFrame implements ActionListe
         }
         if (target == updateButton) {
             try {
-                String updateTemp = "UPDATE details SET " +
+                String updateTemp = "UPDATE perf SET " +
                         "firstName = '" + FirstNameTF.getText() +
                         "', lastName = '" + LastNameTF.getText() +
                         "', age = " + AgeTF.getText() +
@@ -239,7 +239,7 @@ public class JDBCMainWindowContent extends JInternalFrame implements ActionListe
 
                 stmt.executeUpdate(updateTemp);
                 //these lines do nothing but the table updates when we access the db.
-                rs = stmt.executeQuery("SELECT * from details ");
+                rs = stmt.executeQuery("SELECT * from perf ");
                 rs.next();
                 rs.close();
             } catch (SQLException sqle) {
