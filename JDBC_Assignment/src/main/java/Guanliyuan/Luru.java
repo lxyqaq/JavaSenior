@@ -139,7 +139,7 @@ public class Luru extends JFrame implements ActionListener {
 	
 	public void connDB() { // 连接数据库
 		try {
-			Class.forName("com.mysql.jdbc.Driver");//注册驱动
+			Class.forName("com.mysql.cj.jdbc.Driver");//注册驱动
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
