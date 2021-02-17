@@ -42,7 +42,7 @@ public class LoginDao {
     /**
      * 更新密码
      */
-    public static void updatePwd(String newPwd)  {
+    public static void updatePwd(String newPwd) {
         Connection conn = DataBaseUtil.getConnection();
         try {
             PreparedStatement pstmt = conn.prepareStatement("update password set pwd=?");
@@ -58,4 +58,5 @@ public class LoginDao {
             }
         }
     }
+
 }

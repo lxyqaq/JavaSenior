@@ -208,7 +208,7 @@ public class CartFrame extends JFrame {
      * 刷新JTable的数据
      */
     public void refreshTableData(List<Cart> list) {
-        Vector<Cart> v = new Vector<Cart>();
+        Vector<Cart> v = new Vector<>();
         for (Cart cart : list) {
             v.add(cart);
         }

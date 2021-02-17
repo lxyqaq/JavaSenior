@@ -50,7 +50,7 @@ public class SellHistoryFrame extends JFrame {
 
     public void init() {
         this.setTitle("销售记录查询");
-        this.setSize(420, 320);
+        this.setSize(530, 320);
         this.setContentPane(createContentPane());
         int windowWidth = this.getWidth(); //获得窗口宽
         int windowHeight = this.getHeight(); //获得窗口高

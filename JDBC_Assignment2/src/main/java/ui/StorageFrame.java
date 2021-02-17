@@ -51,7 +51,7 @@ public class StorageFrame extends JFrame {
 
     public void init() {
         this.setTitle("库存查询");
-        this.setSize(600, 320);
+        this.setSize(700, 350);
         this.setContentPane(createContentPane());
         int windowWidth = this.getWidth(); //获得窗口宽
         int windowHeight = this.getHeight(); //获得窗口高
