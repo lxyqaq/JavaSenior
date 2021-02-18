@@ -18,7 +18,6 @@ import javax.swing.border.EmptyBorder;
 
 public class LoginFrame extends JFrame {
 
-
     private static final long serialVersionUID = 8486147879661945934L;
 
     public LoginFrame() {
@@ -26,34 +25,22 @@ public class LoginFrame extends JFrame {
         init();
     }
 
-    /**
-     * 初始化显示界面(绘制全部界面)
-     */
     private void init() {
-        setTitle("小型商店进销存管理系统");
+        setTitle("Store Management System");
         setSize(300, 220);
         setContentPane(createContentPane());
-//		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		/*addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				clientContext.exit(LoginFrame.this);
-			}
-		});*/
-        int windowWidth = this.getWidth(); //获得窗口宽
-        int windowHeight = this.getHeight(); //获得窗口高
-        Toolkit kit = Toolkit.getDefaultToolkit(); //定义工具包
-        Dimension screenSize = kit.getScreenSize(); //获取屏幕的尺寸
-        int screenWidth = screenSize.width; //获取屏幕的宽
-        int screenHeight = screenSize.height; //获取屏幕的高
-        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);//设置窗口居中显示
+        int windowWidth = this.getWidth();
+        int windowHeight = this.getHeight();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);
     }
 
-    /**
-     * 创建窗口框中间的内容面板
-     */
     private JPanel createContentPane() {
         JPanel p = new JPanel(new BorderLayout());
-        p.add(BorderLayout.NORTH, new JLabel("小型商店进销存管理系统", JLabel.CENTER));
+        p.add(BorderLayout.NORTH, new JLabel("Store Management System", JLabel.CENTER));
         p.add(BorderLayout.CENTER, createCenterPane());
         p.add(BorderLayout.SOUTH, createBtnPane());
         p.setBorder(new EmptyBorder(6, 45, 6, 45));
@@ -81,7 +68,7 @@ public class LoginFrame extends JFrame {
 
     private JPanel createPwdPane() {
         JPanel p = new JPanel(new BorderLayout(5, 0));
-        p.add(BorderLayout.WEST, new JLabel("密    码:"));
+        p.add(BorderLayout.WEST, new JLabel("Password:"));
         pwdField = new JPasswordField(20);
         pwdField.enableInputMethods(true);
         p.add(BorderLayout.CENTER, pwdField);
@@ -90,41 +77,30 @@ public class LoginFrame extends JFrame {
 
     private JPanel createBtnPane() {
         JPanel p = new JPanel(new FlowLayout());
-        JButton login = new JButton("登入");
-        JButton cancel = new JButton("退出");
+        JButton login = new JButton("Sign in");
+        JButton cancel = new JButton("Sign out");
         p.add(login);
         p.add(cancel);
 
-        // 设置默认按钮
         getRootPane().setDefaultButton(login);
 
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // 调用控制器的登录功能
                 clientContext.login();
-                // 在执行这个方法之前, 必须注入clientContext实例
-                // 否则会出现NullPointerException
             }
         });
 
         cancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 LoginFrame.this.clientContext.exit(LoginFrame.this);
-                // clientContext.exit(LoginFrame.this);
             }
         });
 
         return p;
     }
 
-    /**
-     * ClientContext 客户端上下文, 这里是客户端控制器
-     */
-    private ClientContext clientContext;// 默认值是null
+    private ClientContext clientContext;
 
-    /**
-     * 为clientContext赋值, 使clientContext引用的值, 不再为null, 必须依赖的属性值注入方法 缩写: IOC
-     */
     public void setClientContext(ClientContext clientContext) {
         this.clientContext = clientContext;
     }
@@ -149,4 +125,5 @@ public class LoginFrame extends JFrame {
         LoginFrame frame = new LoginFrame();
         frame.setVisible(true);
     }
+
 }
