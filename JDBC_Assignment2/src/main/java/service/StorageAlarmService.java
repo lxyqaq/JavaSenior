@@ -11,13 +11,23 @@ import dao.DataBaseUtil;
 import dao.ProductDao;
 import entity.Product;
 
+/**
+ * @ClassName StorageAlarmService
+ * @Description StorageAlarmService method
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 22:19
+ * @Version 1.0
+ */
 public class StorageAlarmService {
+
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
-     * 检查是否有商品的库存低于警告值
-     *
-     * @return
+     * @return boolean
+     * @throws
+     * @description Check if the stock of the product is below the warning value
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:34
      */
     public boolean checkStorage() {
         Connection conn = DataBaseUtil.getConnection();
@@ -46,9 +56,11 @@ public class StorageAlarmService {
     }
 
     /**
-     * 查找所有缺货商品
-     *
-     * @return
+     * @return java.util.Vector<entity.Product>
+     * @throws
+     * @description Find all out of stock items
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:34
      */
     public Vector<Product> findAlarmProduct() {
         String sql = "select * from product p0 where p0.product_id in(select product_id from product p where p.storage<p.alarm_storage)";
@@ -83,10 +95,12 @@ public class StorageAlarmService {
     }
 
     /**
-     * 销售商品后，及时检测其库存是否已低于阈值，若是则给出提醒
-     *
      * @param pid
-     * @return
+     * @return boolean
+     * @throws
+     * @description After the merchandise is sold, check whether its inventory has fallen below the threshold in time, and give a reminder if so
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:34
      */
     public boolean checkProductStorage(int pid) {
         ProductDao dao = new ProductDao();
@@ -97,4 +111,5 @@ public class StorageAlarmService {
             return false;
         }
     }
+
 }
