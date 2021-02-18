@@ -36,13 +36,7 @@ public class SellHistoryFrame extends JFrame {
     private JScrollPane sellHistoryPanel;
     private JTable sellHistoryTable;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    /**
-     * 表头
-     */
     private String[] rowname;
-    /**
-     * 表内容（二维数据）
-     */
     private String[][] data;
 
     public SellHistoryFrame() {
@@ -51,16 +45,16 @@ public class SellHistoryFrame extends JFrame {
     }
 
     public void init() {
-        this.setTitle("销售记录查询");
+        this.setTitle("Sales record query");
         this.setSize(530, 320);
         this.setContentPane(createContentPane());
-        int windowWidth = this.getWidth(); //获得窗口宽
-        int windowHeight = this.getHeight(); //获得窗口高
-        Toolkit kit = Toolkit.getDefaultToolkit(); //定义工具包
-        Dimension screenSize = kit.getScreenSize(); //获取屏幕的尺寸
-        int screenWidth = screenSize.width; //获取屏幕的宽
-        int screenHeight = screenSize.height; //获取屏幕的高
-        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);//设置窗口居中显示
+        int windowWidth = this.getWidth();
+        int windowHeight = this.getHeight();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);
         this.setResizable(false);
     }
 
@@ -73,12 +67,11 @@ public class SellHistoryFrame extends JFrame {
 
     private Component createButtonPanel() {
         JPanel panel = new JPanel();
-        JButton okBtn = new JButton("关闭");
+        JButton okBtn = new JButton("Export");
         okBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                SellHistoryFrame.this.setVisible(false);
-                SellHistoryFrame.this.daochu();
+                SellHistoryFrame.this.export();
             }
         });
         panel.add(okBtn);
@@ -92,9 +85,6 @@ public class SellHistoryFrame extends JFrame {
         return sellHistoryPanel;
     }
 
-    /**
-     * 初始化表格数据
-     */
     public void initTableData() {
         String[] rowNames = getRowNames();
         String[][] data = getTableData();
@@ -104,9 +94,6 @@ public class SellHistoryFrame extends JFrame {
         sellHistoryTable.setDefaultRenderer(Object.class, tcr);
     }
 
-    /**
-     * 刷新JTable的数据
-     */
     public void refreshTableData() {
         DefaultTableModel model = new DefaultTableModel(getTableData(), getRowNames());
         sellHistoryTable.setModel(model);
@@ -114,23 +101,13 @@ public class SellHistoryFrame extends JFrame {
         sellHistoryTable.updateUI();
     }
 
-    /**
-     * 生成列名
-     *
-     * @return
-     */
     private String[] getRowNames() {
         if (rowname == null) {
-            rowname = new String[]{"销售日期", "品种", "名称", "数量", "总价"};
+            rowname = new String[]{"Sale date", "Categories", "Name", "Quantity", "Subtotal"};
         }
         return rowname;
     }
 
-    /**
-     * 生成表数据内容的二维数组
-     *
-     * @return
-     */
     private String[][] getTableData() {
         SellHistoryDao dao = new SellHistoryDao();
         Vector<SellHistory> list = dao.findAllHistory();
@@ -141,22 +118,22 @@ public class SellHistoryFrame extends JFrame {
             String catStr = "";
             switch (cat) {
                 case 1:
-                    catStr = "饮料";
+                    catStr = "Drinks";
                     break;
                 case 2:
-                    catStr = "食品";
+                    catStr = "Food";
                     break;
                 case 3:
-                    catStr = "酒类";
+                    catStr = "Wine";
                     break;
                 case 4:
-                    catStr = "香烟";
+                    catStr = "Cigarette";
                     break;
                 case 5:
-                    catStr = "零食";
+                    catStr = "Snacks";
                     break;
                 case 6:
-                    catStr = "生活用品";
+                    catStr = "Household";
                     break;
             }
             ret[idx][1] = catStr;
@@ -174,7 +151,7 @@ public class SellHistoryFrame extends JFrame {
         int nRow = dtm.getRowCount();
         int nCol = dtm.getColumnCount();
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("file.csv"), "utf-8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("SellHistory.csv"), "utf-8"));
 
             //write the header information
             StringBuffer bufferHeader = new StringBuffer();
@@ -198,7 +175,7 @@ public class SellHistoryFrame extends JFrame {
         }
     }
 
-    public void daochu() {
+    public void export() {
         refreshTableData();
         try {
             writeCSVfile(sellHistoryTable);

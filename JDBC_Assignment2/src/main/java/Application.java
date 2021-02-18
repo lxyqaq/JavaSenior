@@ -22,7 +22,6 @@ public class Application {
         MainFrame mainFrame = new MainFrame();
         LoginFrame loginFrame = new LoginFrame();
         PurchaseFrame purchaseFrame = new PurchaseFrame();
-        SellFrame sellFrame = new SellFrame();
         StorageFrame storageFrame = new StorageFrame();
         NewProductFrame newProductFrame = new NewProductFrame();
         StockHistoryFrame stockHistoryFrame = new StockHistoryFrame();
@@ -38,7 +37,6 @@ public class Application {
         clientContext.setMainFrame(mainFrame);
         clientContext.setLoginFrame(loginFrame);
         clientContext.setPurchaseFrame(purchaseFrame);
-        clientContext.setSellFrame(sellFrame);
         clientContext.setStorageFrame(storageFrame);
         clientContext.setNewProductFrame(newProductFrame);
         clientContext.setModifyProductFrame(modifyProductFrame);
@@ -54,7 +52,6 @@ public class Application {
         mainFrame.setClientContext(clientContext);
         loginFrame.setClientContext(clientContext);
         purchaseFrame.setClientContext(clientContext);
-        sellFrame.setClientContext(clientContext);
         newProductFrame.setClientContext(clientContext);
         storageFrame.setClientContext(clientContext);
         modifyProductFrame.setClientContext(clientContext);

@@ -13,9 +13,6 @@ import entity.ProductOption;
  */
 public class ProductComboBox extends JComboBox {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -2461723055752181348L;
 
     public ProductComboBox() {
@@ -35,4 +32,5 @@ public class ProductComboBox extends JComboBox {
         ProductOption item = (ProductOption) this.getSelectedItem();
         return item.getValue();
     }
+
 }

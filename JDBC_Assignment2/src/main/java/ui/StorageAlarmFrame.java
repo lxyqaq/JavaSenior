@@ -25,11 +25,7 @@ import service.StorageAlarmService;
 
 import entity.Product;
 
-/**
- * 缺货商品列表窗口
- *
- * @author xujinnan
- */
+
 public class StorageAlarmFrame extends JFrame {
     private static final long serialVersionUID = -8808883923263763897L;
 
@@ -37,13 +33,7 @@ public class StorageAlarmFrame extends JFrame {
     private JScrollPane storagePanel;
     private JTable storageTable;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    /**
-     * 表头
-     */
     private String[] rowname;
-    /**
-     * 表内容（二维数据）
-     */
     private String[][] data;
 
     public StorageAlarmFrame() {
@@ -52,22 +42,22 @@ public class StorageAlarmFrame extends JFrame {
     }
 
     public void init() {
-        this.setTitle("缺货提醒");
+        this.setTitle("Out of stock reminder");
         this.setSize(400, 320);
         this.setContentPane(createContentPane());
-        int windowWidth = this.getWidth(); //获得窗口宽
-        int windowHeight = this.getHeight(); //获得窗口高
-        Toolkit kit = Toolkit.getDefaultToolkit(); //定义工具包
-        Dimension screenSize = kit.getScreenSize(); //获取屏幕的尺寸
-        int screenWidth = screenSize.width; //获取屏幕的宽
-        int screenHeight = screenSize.height; //获取屏幕的高
-        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);//设置窗口居中显示
+        int windowWidth = this.getWidth();
+        int windowHeight = this.getHeight();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);
         this.setResizable(false);
     }
 
     private Container createContentPane() {
         JPanel panel = new JPanel(new BorderLayout());
-        JLabel title = new JLabel("以下商品处于缺货状态，请尽快补充库存！");
+        JLabel title = new JLabel("The following items are out of stock, please replenish the stock as soon as possible!");
         title.setFont(new Font("微软雅黑", 0, 16));
         title.setForeground(Color.red);
         panel.add(title, BorderLayout.NORTH);
@@ -79,7 +69,7 @@ public class StorageAlarmFrame extends JFrame {
     private Component createButtonPanel() {
         JPanel panel = new JPanel();
 
-        JButton okBtn = new JButton("关闭");
+        JButton okBtn = new JButton("Close");
         okBtn.addActionListener(new ActionListener() {
 
             @Override
@@ -98,22 +88,15 @@ public class StorageAlarmFrame extends JFrame {
         return storagePanel;
     }
 
-    /**
-     * 初始化表格数据
-     */
     public void initTableData() {
         String[] rowNames = getRowNames();
         String[][] data = getData();
         storageTable = new JTable(data, rowNames);
-        //单元格居中显示
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(JLabel.CENTER);
         storageTable.setDefaultRenderer(Object.class, tcr);
     }
 
-    /**
-     * 刷新JTable的数据
-     */
     public void refreshTableData() {
         DefaultTableModel model = new DefaultTableModel(getData(), getRowNames());
         storageTable.setModel(model);
@@ -121,23 +104,13 @@ public class StorageAlarmFrame extends JFrame {
         storageTable.updateUI();
     }
 
-    /**
-     * 生成列名
-     *
-     * @return
-     */
     private String[] getRowNames() {
         if (rowname == null) {
-            rowname = new String[]{"编号", "品种", "名称", "当前库存", "上次进货"};
+            rowname = new String[]{"Product Number", "Categories", "Name", "Stock", "Last purchase"};
         }
         return rowname;
     }
 
-    /**
-     * 生成表数据内容的二维数组
-     *
-     * @return
-     */
     private String[][] getData() {
         StorageAlarmService service = new StorageAlarmService();
         Vector<Product> list;
@@ -149,22 +122,22 @@ public class StorageAlarmFrame extends JFrame {
             String catStr = "";
             switch (cat) {
                 case 1:
-                    catStr = "饮料";
+                    catStr = "Drinks";
                     break;
                 case 2:
-                    catStr = "食品";
+                    catStr = "Food";
                     break;
                 case 3:
-                    catStr = "酒类";
+                    catStr = "Wine";
                     break;
                 case 4:
-                    catStr = "香烟";
+                    catStr = "Cigarette";
                     break;
                 case 5:
-                    catStr = "零食";
+                    catStr = "Snacks";
                     break;
                 case 6:
-                    catStr = "生活用品";
+                    catStr = "Household";
                     break;
             }
             ret[idx][1] = catStr;

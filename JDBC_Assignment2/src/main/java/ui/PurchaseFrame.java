@@ -33,48 +33,39 @@ public class PurchaseFrame extends JFrame {
         init();
     }
 
-    /**
-     * 初始化方法
-     */
     private void init() {
-        this.setTitle("进货管理");
-        this.setSize(420, 320);
+        this.setTitle("Purchase management");
+        this.setSize(500, 320);
         this.setContentPane(createContentPane());
-        int windowWidth = this.getWidth(); //获得窗口宽
-        int windowHeight = this.getHeight(); //获得窗口高
-        Toolkit kit = Toolkit.getDefaultToolkit(); //定义工具包
-        Dimension screenSize = kit.getScreenSize(); //获取屏幕的尺寸
-        int screenWidth = screenSize.width; //获取屏幕的宽
-        int screenHeight = screenSize.height; //获取屏幕的高
-        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);//设置窗口居中显示
+        int windowWidth = this.getWidth();
+        int windowHeight = this.getHeight();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);
         this.setResizable(false);
     }
 
-    /**
-     * 创建主面板
-     *
-     * @return
-     */
     private Container createContentPane() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(7, 4));
 
-        JLabel top = new JLabel("进货信息登记");
+        JLabel top = new JLabel("Purchase information registration");
         JPanel jp1 = new JPanel();
         jp1.add(top);
         mainPanel.add(jp1);
 
-        JLabel category = new JLabel("商品类型");
+        JLabel category = new JLabel("Categories");
 
         catCombox = new JComboBox();
-        catCombox.addItem("饮料");
-        catCombox.addItem("食品");
-        catCombox.addItem("酒类");
-        catCombox.addItem("香烟");
-        catCombox.addItem("零食");
-        catCombox.addItem("生活用品");
+        catCombox.addItem("Drinks");
+        catCombox.addItem("Food");
+        catCombox.addItem("Wine");
+        catCombox.addItem("Cigarette");
+        catCombox.addItem("Snacks");
+        catCombox.addItem("Household");
         catCombox.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.correlationCombox();
@@ -85,7 +76,7 @@ public class PurchaseFrame extends JFrame {
         jp2.add(catCombox);
         mainPanel.add(jp2);
 
-        productCombox = new ProductComboBox(getOption(1));//productCombox.setModel(aModel)
+        productCombox = new ProductComboBox(getOption(1));
         productCombox.addActionListener(new ActionListener() {
 
             @Override
@@ -93,8 +84,7 @@ public class PurchaseFrame extends JFrame {
                 clientContext.setCurrSelectedProduct();
             }
         });
-//        product.setModel(aModel);
-        JLabel name = new JLabel("商品名称");
+        JLabel name = new JLabel("Name");
         JPanel jp3 = new JPanel();
         jp3.add(name);
         jp3.add(productCombox);
@@ -104,7 +94,7 @@ public class PurchaseFrame extends JFrame {
         mainPanel.setVisible(true);
         mainPanel.add(jp7);
 
-        JLabel number = new JLabel("请输入进货数量");
+        JLabel number = new JLabel("Please enter the quantity");
         purNumbers = new JTextField(12);
         JPanel jp4 = new JPanel();
         jp4.add(number);
@@ -114,33 +104,32 @@ public class PurchaseFrame extends JFrame {
         JPanel jp5 = new JPanel();
         mainPanel.add(jp5);
 
-        okBtn = new JButton("确定");
+        okBtn = new JButton("Yes");
         okBtn.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.purchase();
             }
         });
-        JButton cancelBtn = new JButton("取消");
-        cancelBtn.addActionListener(new ActionListener() {
 
+        JButton cancelBtn = new JButton("No");
+        cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.showOrHidePurchaseFrame(false);
             }
         });
-        JButton addBtn = new JButton("新增商品");
-        addBtn.addActionListener(new ActionListener() {
 
+        JButton addBtn = new JButton("Add product");
+        addBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.showOrHideNewProductFrame(true);
             }
         });
-        JButton stockHistoryBtn = new JButton("进货记录");
-        stockHistoryBtn.addActionListener(new ActionListener() {
 
+        JButton stockHistoryBtn = new JButton("Purchase record");
+        stockHistoryBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.showOrHideStockHistory(true);
@@ -155,12 +144,6 @@ public class PurchaseFrame extends JFrame {
         return mainPanel;
     }
 
-    /**
-     * 取下拉框Key-Value集合
-     *
-     * @param category
-     * @return
-     */
     public Vector<ProductOption> getOption(int category) {
         ProductDao dao = new ProductDao();
         Vector<ProductOption> ret = new Vector<ProductOption>();
@@ -168,7 +151,7 @@ public class PurchaseFrame extends JFrame {
         if (ps == null || ps.size() == 0) {
             ProductOption po = new ProductOption();
             po.setValue(-1);
-            po.setText("该分类下无商品");
+            po.setText("There are no products in this category");
             ret.add(po);
         }
         for (Product p : ps) {

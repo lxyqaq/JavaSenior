@@ -105,3 +105,5 @@ CREATE TRIGGER testtwo
 BEGIN
 UPDATE product SET storage = storage - NEW.quantity WHERE product_id = NEW.product_id;
 END;
+
+

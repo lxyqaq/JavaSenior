@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 
 public class ModifyPwdFrame extends JFrame {
 
-
     private static final long serialVersionUID = 8486147879661945934L;
 
     public ModifyPwdFrame() {
@@ -28,24 +27,21 @@ public class ModifyPwdFrame extends JFrame {
     }
 
     private void init() {
-        setTitle("修改密码");
+        setTitle("Change Password");
         setSize(300, 220);
         setContentPane(createContentPane());
-        int windowWidth = this.getWidth(); //获得窗口宽
-        int windowHeight = this.getHeight(); //获得窗口高
-        Toolkit kit = Toolkit.getDefaultToolkit(); //定义工具包
-        Dimension screenSize = kit.getScreenSize(); //获取屏幕的尺寸
-        int screenWidth = screenSize.width; //获取屏幕的宽
-        int screenHeight = screenSize.height; //获取屏幕的高
-        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);//设置窗口居中显示
+        int windowWidth = this.getWidth();
+        int windowHeight = this.getHeight();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);
     }
 
-    /**
-     * 创建窗口框中间的内容面板
-     */
     private JPanel createContentPane() {
         JPanel p = new JPanel(new BorderLayout());
-        p.add(BorderLayout.NORTH, new JLabel("修改密码", JLabel.CENTER));
+        p.add(BorderLayout.NORTH, new JLabel("Change Password", JLabel.CENTER));
         p.add(BorderLayout.CENTER, createCenterPane());
         p.add(BorderLayout.SOUTH, createBtnPane());
         p.setBorder(new EmptyBorder(6, 45, 6, 45));
@@ -69,7 +65,7 @@ public class ModifyPwdFrame extends JFrame {
 
     private JPanel createIdPane() {
         JPanel p = new JPanel(new BorderLayout(5, 0));
-        p.add(BorderLayout.WEST, new JLabel("    原密码:"));
+        p.add(BorderLayout.WEST, new JLabel("Old password:"));
         orgPwd = new JPasswordField(20);
         orgPwd.enableInputMethods(true);
         p.add(BorderLayout.CENTER, orgPwd);
@@ -78,7 +74,7 @@ public class ModifyPwdFrame extends JFrame {
 
     private JPanel createPwdPane() {
         JPanel p = new JPanel(new BorderLayout(5, 0));
-        p.add(BorderLayout.WEST, new JLabel("    新密码:"));
+        p.add(BorderLayout.WEST, new JLabel("New password:"));
         pwdField = new JPasswordField(20);
         pwdField.enableInputMethods(true);
         p.add(BorderLayout.CENTER, pwdField);
@@ -87,7 +83,7 @@ public class ModifyPwdFrame extends JFrame {
 
     private JPanel createPwdPane2() {
         JPanel p = new JPanel(new BorderLayout(5, 0));
-        p.add(BorderLayout.WEST, new JLabel("再次输入:"));
+        p.add(BorderLayout.WEST, new JLabel("Enter again:"));
         repeatPwd = new JPasswordField(20);
         repeatPwd.enableInputMethods(true);
         p.add(BorderLayout.CENTER, repeatPwd);
@@ -96,8 +92,8 @@ public class ModifyPwdFrame extends JFrame {
 
     private JPanel createBtnPane() {
         JPanel p = new JPanel(new FlowLayout());
-        JButton login = new JButton("修改");
-        JButton cancel = new JButton("取消");
+        JButton login = new JButton("Change");
+        JButton cancel = new JButton("Cancel");
         p.add(login);
         p.add(cancel);
 
@@ -118,7 +114,7 @@ public class ModifyPwdFrame extends JFrame {
         return p;
     }
 
-    private ClientContext clientContext;// 默认值是null
+    private ClientContext clientContext;
 
     public void setClientContext(ClientContext clientContext) {
         this.clientContext = clientContext;
