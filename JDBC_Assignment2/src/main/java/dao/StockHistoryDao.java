@@ -11,22 +11,26 @@ import java.util.Vector;
 import entity.StockHistory;
 
 /**
- * 进货历史记录数据库操作类
- *
- * @author xujinnan
+ * @ClassName StockHistoryDao
+ * @Description StockHistoryDao method
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 17:19
+ * @Version 1.0
  */
 public class StockHistoryDao {
+
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     ProductDao pdao = new ProductDao();
 
     /**
-     * 查找所有进货记录
-     *
-     * @return
+     * @return java.util.Vector<entity.StockHistory>
+     * @throws
+     * @description findAllHistory methood
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:19
      */
     public Vector<StockHistory> findAllHistory() {
-        Vector<StockHistory> ret = new Vector<StockHistory>();
-
+        Vector<StockHistory> ret = new Vector<>();
         Connection conn = DataBaseUtil.getConnection();
         try {
             PreparedStatement pstmt = conn.prepareStatement("select * from stock_history order by stock_date desc");
@@ -53,9 +57,12 @@ public class StockHistoryDao {
     }
 
     /**
-     * 插入进货记录
-     *
      * @param sh
+     * @return void
+     * @throws
+     * @description saveStockHistory method
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:20
      */
     public void saveStockHistory(StockHistory sh) {
         Connection conn = DataBaseUtil.getConnection();
@@ -66,7 +73,6 @@ public class StockHistoryDao {
             pstmt.setString(2, sdf.format(new Date()));
             pstmt.setInt(3, sh.getQuantity());
             pstmt.executeUpdate();
-//			System.out.println(sql);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -77,4 +83,5 @@ public class StockHistoryDao {
             }
         }
     }
+
 }

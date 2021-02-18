@@ -9,9 +9,11 @@ import java.sql.*;
 import java.util.Properties;
 
 /**
- * 数据库工具类
- *
- * @author xujinnan
+ * @ClassName DataBaseUtil
+ * @Description Database tools
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/8 17:19
+ * @Version 1.0
  */
 public class DataBaseUtil {
 

@@ -11,21 +11,25 @@ import java.util.Vector;
 import entity.Product;
 
 /**
- * 商品数据库操作类
- *
- * @author xujinnan
+ * @ClassName ProductDao
+ * @Description ProductDao method
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/9 17:19
+ * @Version 1.0
  */
 public class ProductDao {
+
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
-     * 查找所有商品（默认排序）
-     *
-     * @return
+     * @return java.util.Vector<entity.Product>
+     * @throws
+     * @description findAllProduct method
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 13:51
      */
     public Vector<Product> findAllProduct() {
-        Vector<Product> ret = new Vector<Product>();
-
+        Vector<Product> ret = new Vector<>();
         Connection conn = DataBaseUtil.getConnection();
         try {
             PreparedStatement pstmt = conn.prepareStatement("select * from product");
@@ -56,14 +60,15 @@ public class ProductDao {
     }
 
     /**
-     * 根据分类查找商品
-     *
      * @param cid
-     * @return
+     * @return java.util.Vector<entity.Product>
+     * @throws
+     * @description findProductByCategory method by id
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 13:54
      */
     public Vector<Product> findProductByCategory(int cid) {
-        Vector<Product> ret = new Vector<Product>();
-
+        Vector<Product> ret = new Vector<>();
         Connection conn = DataBaseUtil.getConnection();
         try {
             PreparedStatement pstmt = conn.prepareStatement("select * from product where catogery=?");
@@ -95,15 +100,16 @@ public class ProductDao {
     }
 
     /**
-     * 按分类排序查看
-     *
      * @param cid
      * @param order
-     * @return
+     * @return java.util.Vector<entity.Product>
+     * @throws
+     * @description findProductByCategory method by order
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 13:55
      */
     public Vector<Product> findProductByCategory(int cid, String order) {
-        Vector<Product> ret = new Vector<Product>();
-
+        Vector<Product> ret = new Vector<>();
         Connection conn = DataBaseUtil.getConnection();
         try {
             PreparedStatement pstmt = conn.prepareStatement("select * from product where catogery=? order by storage " + order);
@@ -135,10 +141,12 @@ public class ProductDao {
     }
 
     /**
-     * 根据商品编号查找商品
-     *
      * @param no
-     * @return
+     * @return entity.Product
+     * @throws
+     * @description findProductByNo method by product_no
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:00
      */
     public Product findProductByNo(String no) {
         Connection conn = DataBaseUtil.getConnection();
@@ -173,10 +181,12 @@ public class ProductDao {
     }
 
     /**
-     * 查找所有商品（指定排序）
-     *
      * @param order
-     * @return
+     * @return java.util.Vector<entity.Product>
+     * @throws
+     * @description findAllProduct method
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:01
      */
     public Vector<Product> findAllProduct(String order) {
         Vector<Product> ret = new Vector<Product>();
@@ -211,9 +221,12 @@ public class ProductDao {
     }
 
     /**
-     * 新商品入库
-     *
      * @param product
+     * @return void
+     * @throws
+     * @description saveProduct method
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:02
      */
     public void saveProduct(Product product) {
         Connection conn = DataBaseUtil.getConnection();
@@ -241,10 +254,12 @@ public class ProductDao {
     }
 
     /**
-     * 按ID查找商品
-     *
      * @param pid
-     * @return
+     * @return entity.Product
+     * @throws
+     * @description saveProduct method by id
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:02
      */
     public Product findProduct(int pid) {
         Connection conn = DataBaseUtil.getConnection();
@@ -278,9 +293,12 @@ public class ProductDao {
     }
 
     /**
-     * 删除产品信息
-     *
      * @param pid
+     * @return void
+     * @throws
+     * @description deleteProduct method by id
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:04
      */
     public void deleteProduct(int pid) {
         Connection conn = DataBaseUtil.getConnection();
@@ -300,10 +318,13 @@ public class ProductDao {
     }
 
     /**
-     * 更新库存
-     *
      * @param productId
      * @param storage
+     * @return void
+     * @throws
+     * @description updateStorage method by id
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:09
      */
     public void updateStorage(int productId, int storage) {
         Product p = this.findProduct(productId);
@@ -327,9 +348,12 @@ public class ProductDao {
     }
 
     /**
-     * 更新商品
-     *
      * @param product
+     * @return void
+     * @throws
+     * @description updateProduct method
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:09
      */
     public void updateProduct(Product product) {
         Connection conn = DataBaseUtil.getConnection();

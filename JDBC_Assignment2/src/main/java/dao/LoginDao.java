@@ -6,16 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * 密码相关数据库操作类
- *
- * @author xujinnan
+ * @ClassName LoginDao
+ * @Description LoginDao method
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/9 17:19
+ * @Version 1.0
  */
 public class LoginDao {
 
     /**
-     * 读取密码
-     *
-     * @return
+     * @return java.lang.String
+     * @throws
+     * @description get Password
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 13:48
      */
     public static String getPwd() {
         Connection conn = DataBaseUtil.getConnection();
@@ -40,7 +44,12 @@ public class LoginDao {
     }
 
     /**
-     * 更新密码
+     * @param newPwd
+     * @return void
+     * @throws
+     * @description update Password
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 13:49
      */
     public static void updatePwd(String newPwd) {
         Connection conn = DataBaseUtil.getConnection();

@@ -11,9 +11,11 @@ import java.util.Vector;
 import entity.SellHistory;
 
 /**
- * 销售历史记录数据库操作类
- *
- * @author xujinnan
+ * @ClassName SellHistoryDao
+ * @Description SellHistoryDao method
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 17:19
+ * @Version 1.0
  */
 public class SellHistoryDao {
 
@@ -21,9 +23,11 @@ public class SellHistoryDao {
     ProductDao pdao = new ProductDao();
 
     /**
-     * 查找所有销售记录
-     *
-     * @return
+     * @return java.util.Vector<entity.SellHistory>
+     * @throws
+     * @description findAllHistory method
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:12
      */
     public Vector<SellHistory> findAllHistory() {
         Vector<SellHistory> ret = new Vector<SellHistory>();
@@ -55,9 +59,12 @@ public class SellHistoryDao {
     }
 
     /**
-     * 插入销售记录
-     *
      * @param sh
+     * @return void
+     * @throws
+     * @description saveSellHistory method
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/18 14:18
      */
     public void saveSellHistory(SellHistory sh) {
         Connection conn = DataBaseUtil.getConnection();
@@ -68,7 +75,6 @@ public class SellHistoryDao {
             pstmt.setString(2, sdf.format(new Date()));
             pstmt.setInt(3, sh.getQuantity());
             pstmt.executeUpdate();
-//			System.out.println(sql);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -79,4 +85,5 @@ public class SellHistoryDao {
             }
         }
     }
+
 }

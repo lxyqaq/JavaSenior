@@ -116,7 +116,6 @@ public class MainFrame extends JFrame {
         sellHistoryBtn.setMargin(new Insets(180, 10, 0, 10));
         sellHistoryBtn.setFont(font16);
         sellHistoryBtn.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.showSellHistoryFrame();
