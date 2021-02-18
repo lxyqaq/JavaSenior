@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
 
     public void init() {
         this.setTitle("小型商店进销存管理系统");
-        this.setSize(550, 400);
+        this.setSize(650, 450);
         this.setContentPane(createContentPane());
         int windowWidth = this.getWidth(); //获得窗口宽
         int windowHeight = this.getHeight(); //获得窗口高

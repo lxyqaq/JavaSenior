@@ -29,11 +29,20 @@ import entity.Cart;
 import entity.Product;
 
 /**
- * 购物车窗口
- *
- * @author xujinnan
+ * @ClassName CartFrame
+ * @Description Shopping cart page
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 22:19
+ * @Version 1.0
  */
 public class CartFrame extends JFrame {
+
+    public static void main(String[] args) {
+        CartFrame mf = new CartFrame();
+        mf.init();
+        mf.setVisible(true);
+    }
+
     private static final long serialVersionUID = -8808883923263763897L;
 
     private ClientContext clientContext;
@@ -43,13 +52,7 @@ public class CartFrame extends JFrame {
     private JTextField productQty;
     private JTextField productNumField;
     private JButton addProductBtn;
-    /**
-     * 表头
-     */
     private String[] rowname;
-    /**
-     * 表内容（二维数据）
-     */
     private String[][] data;
 
     public CartFrame() {
@@ -58,16 +61,16 @@ public class CartFrame extends JFrame {
     }
 
     public void init() {
-        this.setTitle("购物车");
-        this.setSize(480, 320);
+        this.setTitle("Basket");
+        this.setSize(570, 320);
         this.setContentPane(createContentPane());
-        int windowWidth = this.getWidth(); //获得窗口宽
-        int windowHeight = this.getHeight(); //获得窗口高
-        Toolkit kit = Toolkit.getDefaultToolkit(); //定义工具包
-        Dimension screenSize = kit.getScreenSize(); //获取屏幕的尺寸
-        int screenWidth = screenSize.width; //获取屏幕的宽
-        int screenHeight = screenSize.height; //获取屏幕的高
-        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);//设置窗口居中显示
+        int windowWidth = this.getWidth();
+        int windowHeight = this.getHeight();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);
         this.setResizable(false);
     }
 
@@ -79,23 +82,17 @@ public class CartFrame extends JFrame {
         return panel;
     }
 
-    /**
-     * 顶部输入框、按钮
-     *
-     * @return
-     */
     private Component createTopPanel() {
         JPanel panel = new JPanel();
-        panel.add(new JLabel("商品编号"));
+        panel.add(new JLabel("Product Number"));
         productNumField = new JTextField(10);
         panel.add(productNumField);
-        panel.add(new JLabel("数量"));
+        panel.add(new JLabel("Quantity"));
         productQty = new JTextField(5);
         panel.add(productQty);
-        addProductBtn = new JButton("确定");
+        addProductBtn = new JButton("Add");
         panel.add(addProductBtn);
         addProductBtn.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.addCart();
@@ -106,33 +103,14 @@ public class CartFrame extends JFrame {
 
     private Component createButtonPanel() {
         JPanel panel = new JPanel();
-		/*JButton modifyBtn = new JButton("修改");
-		modifyBtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(storageTable.getSelectedRow() == -1){
-					JOptionPane.showMessageDialog(CartFrame.this, "请选择要操作的商品！","商品管理", JOptionPane.WARNING_MESSAGE);
-				}else{
-					ProductDao dao = new ProductDao();
-					int pid = Integer.parseInt(data[storageTable.getSelectedRow()][0]);//根据选中行的下标，从data二维数组中取到对应的行，其中第一列为ID
-					Product currProduct = dao.findProduct(pid);//根据ID从数据库中读取商品
-					clientContext.setCurrProduct(currProduct);//设置控制器中的当前商品实例
-					clientContext.showOrHideModifyProductFrame(true);//显示修改商品窗口
-				}
-			}
-		});
-		panel.add(modifyBtn);*/
-
-        JButton delBtn = new JButton("删除");
+        JButton delBtn = new JButton("Delete");
         delBtn.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (storageTable.getSelectedRow() == -1) {
-                    JOptionPane.showMessageDialog(CartFrame.this, "请选择要操作的商品！", "商品管理", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(CartFrame.this, "Please select the product to be operated!", "Commodity management", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    int val = JOptionPane.showConfirmDialog(CartFrame.this, "是否删除该商品？");
+                    int val = JOptionPane.showConfirmDialog(CartFrame.this, "Do you want to delete this product?");
                     if (val == JOptionPane.YES_OPTION) {
                         int deleteRow = storageTable.getSelectedRow();
                         clientContext.getSellProducts().remove(deleteRow);
@@ -161,9 +139,8 @@ public class CartFrame extends JFrame {
         });
         panel.add(delBtn);
 
-        JButton settleBtn = new JButton("结账");
+        JButton settleBtn = new JButton("Checkout");
         settleBtn.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.settle();
@@ -171,9 +148,8 @@ public class CartFrame extends JFrame {
         });
         panel.add(settleBtn);
 
-        JButton okBtn = new JButton("关闭");
+        JButton okBtn = new JButton("Close");
         okBtn.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 CartFrame.this.setVisible(false);
@@ -190,23 +166,16 @@ public class CartFrame extends JFrame {
         return storagePanel;
     }
 
-    /**
-     * 初始化表格数据
-     */
     public void initTableData() {
         String[] rowNames = getRowNames();
         String[][] data = getData(new Vector<Cart>());
         storageTable = new JTable(data, rowNames);
-        //单元格居中显示
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(JLabel.CENTER);
         storageTable.setDefaultRenderer(Object.class, tcr);
-        storageTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  //单选
+        storageTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
-    /**
-     * 刷新JTable的数据
-     */
     public void refreshTableData(List<Cart> list) {
         Vector<Cart> v = new Vector<>();
         for (Cart cart : list) {
@@ -218,23 +187,13 @@ public class CartFrame extends JFrame {
         storageTable.updateUI();
     }
 
-    /**
-     * 生成列名
-     *
-     * @return
-     */
     private String[] getRowNames() {
         if (rowname == null) {
-            rowname = new String[]{"商品编号", "品种", "名称", "数量", "单价", "小计"};
+            rowname = new String[]{"Product Number", "Categories", "Name", "Quantity", "Price", "Subtotal"};
         }
         return rowname;
     }
 
-    /**
-     * 生成表数据内容的二维数组
-     *
-     * @return
-     */
     private String[][] getData(Vector<Cart> list) {
         String[][] ret = new String[list.size()][6];
         for (int idx = 0; idx < list.size(); idx++) {
@@ -243,22 +202,22 @@ public class CartFrame extends JFrame {
             String catStr = "";
             switch (cat) {
                 case 1:
-                    catStr = "饮料";
+                    catStr = "Drinks";
                     break;
                 case 2:
-                    catStr = "食品";
+                    catStr = "Food";
                     break;
                 case 3:
-                    catStr = "酒类";
+                    catStr = "Wine";
                     break;
                 case 4:
-                    catStr = "香烟";
+                    catStr = "Cigarette";
                     break;
                 case 5:
-                    catStr = "零食";
+                    catStr = "Snacks";
                     break;
                 case 6:
-                    catStr = "生活用品";
+                    catStr = "Household";
                     break;
             }
             ret[idx][1] = catStr;
@@ -269,12 +228,6 @@ public class CartFrame extends JFrame {
         }
         data = ret;
         return data;
-    }
-
-    public static void main(String[] args) {
-        CartFrame mf = new CartFrame();
-        mf.init();
-        mf.setVisible(true);
     }
 
     public ClientContext getClientContext() {
