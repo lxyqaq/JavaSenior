@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class MainFrame extends JFrame {
+
     private static final long serialVersionUID = -8808883923263763897L;
 
     private ClientContext clientContext;
@@ -28,16 +29,16 @@ public class MainFrame extends JFrame {
     }
 
     public void init() {
-        this.setTitle("小型商店进销存管理系统");
+        this.setTitle("Store Management System");
         this.setSize(650, 450);
         this.setContentPane(createContentPane());
-        int windowWidth = this.getWidth(); //获得窗口宽
-        int windowHeight = this.getHeight(); //获得窗口高
-        Toolkit kit = Toolkit.getDefaultToolkit(); //定义工具包
-        Dimension screenSize = kit.getScreenSize(); //获取屏幕的尺寸
-        int screenWidth = screenSize.width; //获取屏幕的宽
-        int screenHeight = screenSize.height; //获取屏幕的高
-        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);//设置窗口居中显示
+        int windowWidth = this.getWidth();
+        int windowHeight = this.getHeight();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);
         this.setResizable(false);
     }
 
@@ -52,7 +53,7 @@ public class MainFrame extends JFrame {
         JPanel panel = new BackgroundPanel(image);
         Font font16 = new Font("微软雅黑", 1, 16);
 
-        JButton sale = new JButton("销  售", new ImageIcon(MainFrame.class.getResource("/icon/sell.png")));
+        JButton sale = new JButton("Sales", new ImageIcon(MainFrame.class.getResource("/icon/sell.png")));
         sale.setHorizontalTextPosition(SwingConstants.CENTER);
         sale.setVerticalTextPosition(SwingConstants.BOTTOM);
         sale.setBorderPainted(false);
@@ -62,7 +63,6 @@ public class MainFrame extends JFrame {
         sale.setMargin(new Insets(180, 10, 0, 30));
         sale.setFont(font16);
         sale.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.showSellFrame();
@@ -70,7 +70,7 @@ public class MainFrame extends JFrame {
         });
         panel.add(sale);
 
-        JButton purchases = new JButton("进  货", new ImageIcon(MainFrame.class.getResource("/icon/inventory.png")));
+        JButton purchases = new JButton("Purchase", new ImageIcon(MainFrame.class.getResource("/icon/inventory.png")));
         purchases.setHorizontalTextPosition(SwingConstants.CENTER);
         purchases.setVerticalTextPosition(SwingConstants.BOTTOM);
         purchases.setBorderPainted(false);
@@ -80,7 +80,6 @@ public class MainFrame extends JFrame {
         purchases.setMargin(new Insets(180, 10, 0, 30));
         purchases.setFont(font16);
         purchases.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.showOrHidePurchaseFrame(true);
@@ -88,7 +87,7 @@ public class MainFrame extends JFrame {
         });
         panel.add(purchases);
 
-        JButton stock = new JButton("库  存", new ImageIcon(MainFrame.class.getResource("/icon/storage.png")));
+        JButton stock = new JButton("Stock", new ImageIcon(MainFrame.class.getResource("/icon/storage.png")));
         stock.setHorizontalTextPosition(SwingConstants.CENTER);
         stock.setVerticalTextPosition(SwingConstants.BOTTOM);
         stock.setBorderPainted(false);
@@ -98,7 +97,6 @@ public class MainFrame extends JFrame {
         stock.setMargin(new Insets(180, 10, 0, 30));
         stock.setFont(font16);
         stock.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.showOrHideStorageFrame(true);
@@ -106,7 +104,7 @@ public class MainFrame extends JFrame {
         });
         panel.add(stock);
 
-        JButton sellHistoryBtn = new JButton("销售记录", new ImageIcon(MainFrame.class.getResource("/icon/summary.png")));
+        JButton sellHistoryBtn = new JButton("Sales record", new ImageIcon(MainFrame.class.getResource("/icon/summary.png")));
         sellHistoryBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         sellHistoryBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         sellHistoryBtn.setBorderPainted(false);
@@ -123,7 +121,7 @@ public class MainFrame extends JFrame {
         });
         panel.add(sellHistoryBtn);
 
-        JButton setting = new JButton("修改密码", new ImageIcon(MainFrame.class.getResource("/icon/setting.png")));
+        JButton setting = new JButton("Change Password", new ImageIcon(MainFrame.class.getResource("/icon/setting.png")));
         setting.setHorizontalTextPosition(SwingConstants.CENTER);
         setting.setVerticalTextPosition(SwingConstants.BOTTOM);
         setting.setBorderPainted(false);
@@ -133,7 +131,6 @@ public class MainFrame extends JFrame {
         setting.setMargin(new Insets(180, 10, 0, 10));
         setting.setFont(font16);
         setting.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.showModifyPwdFrame(true);
