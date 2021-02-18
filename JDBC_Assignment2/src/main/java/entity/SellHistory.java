@@ -2,6 +2,13 @@ package entity;
 
 import java.util.Date;
 
+/**
+ * @ClassName SellHistory
+ * @Description SellHistory bean
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 21:19
+ * @Version 1.0
+ */
 public class SellHistory {
 
     private int shId;
@@ -49,4 +56,5 @@ public class SellHistory {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }

@@ -1,26 +1,17 @@
 package entity;
 
 /**
- * 购物车实体类
- *
- * @author xujinnan
+ * @ClassName Cart
+ * @Description Cart bean
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 17:19
+ * @Version 1.0
  */
 public class Cart {
-    /**
-     * 序号
-     */
+
     private int seq;
-    /**
-     * 商品
-     */
     private Product product;
-    /**
-     * 数量
-     */
     private int quantity;
-    /**
-     * 小计
-     */
     private double amt;
 
     public int getSeq() {
@@ -54,4 +45,5 @@ public class Cart {
     public void setAmt(double amt) {
         this.amt = amt;
     }
+
 }

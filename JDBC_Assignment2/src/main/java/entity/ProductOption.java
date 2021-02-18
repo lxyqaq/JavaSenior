@@ -1,5 +1,12 @@
 package entity;
 
+/**
+ * @ClassName ProductOption
+ * @Description ProductOption bean
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 20:19
+ * @Version 1.0
+ */
 public class ProductOption {
 
     private int value;

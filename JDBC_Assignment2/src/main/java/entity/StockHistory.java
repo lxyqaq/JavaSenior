@@ -3,9 +3,11 @@ package entity;
 import java.util.Date;
 
 /**
- * 进货历史记录实体类
- *
- * @author xujinnan
+ * @ClassName StockHistory
+ * @Description StockHistory bean
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 22:19
+ * @Version 1.0
  */
 public class StockHistory {
 
@@ -54,4 +56,5 @@ public class StockHistory {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }

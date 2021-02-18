@@ -2,7 +2,15 @@ package entity;
 
 import java.util.Date;
 
+/**
+ * @ClassName Product
+ * @Description Product bean
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 19:19
+ * @Version 1.0
+ */
 public class Product {
+
     private int productId;
     private String productNo;
     private String name;
@@ -84,4 +92,5 @@ public class Product {
     public void setAlarmStorage(int alarmStorage) {
         this.alarmStorage = alarmStorage;
     }
+
 }
