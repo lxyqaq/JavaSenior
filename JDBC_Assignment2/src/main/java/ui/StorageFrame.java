@@ -147,7 +147,8 @@ public class StorageFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                clientContext.showOrHideStorageFrame(false);
+//                clientContext.showOrHideStorageFrame(false);
+                clientContext.jinhuo();
             }
         });
         panel.add(okBtn);

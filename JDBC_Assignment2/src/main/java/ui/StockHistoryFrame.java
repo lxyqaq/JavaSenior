@@ -69,7 +69,6 @@ public class StockHistoryFrame extends JFrame {
         JPanel panel = new JPanel();
         JButton okBtn = new JButton("关闭");
         okBtn.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.showOrHideStockHistory(false);

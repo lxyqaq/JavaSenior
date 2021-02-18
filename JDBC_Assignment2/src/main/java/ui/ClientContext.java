@@ -1,5 +1,8 @@
 package ui;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,11 +12,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import dao.*;
 import service.StorageAlarmService;
-import dao.LoginDao;
-import dao.ProductDao;
-import dao.SellHistoryDao;
-import dao.StockHistoryDao;
 import entity.Cart;
 import entity.Product;
 import entity.SellHistory;
@@ -414,6 +414,48 @@ public class ClientContext {
     public void showSellHistoryFrame() {
         sellHistoryFrame.refreshTableData();
         sellHistoryFrame.setVisible(true);
+    }
+
+    /*
+    * 导出CSV
+    * */
+    public void writeToFile(ResultSet rs) {
+        try{
+            System.out.println("In writeToFile");
+            FileWriter outputFile = new FileWriter("output.csv");
+            PrintWriter printWriter = new PrintWriter(outputFile);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int numColumns = rsmd.getColumnCount();
+
+            for(int i=0;i<numColumns;i++){
+                printWriter.print(rsmd.getColumnLabel(i+1)+",");
+            }
+            printWriter.print("\n");
+            while(rs.next()){
+                for(int i=0;i<numColumns;i++){
+                    printWriter.print(rs.getString(i+1)+",");
+                }
+                printWriter.print("\n");
+                printWriter.flush();
+            }
+            printWriter.close();
+        }
+        catch(Exception e){e.printStackTrace();}
+    }
+
+    /*
+    * 库存
+    * */
+    public void jinhuo() {
+        Connection conn = DataBaseUtil.getConnection();
+        String sql = "select * from product";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery(sql);
+            writeToFile(rs);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public MainFrame getMainFrame() {

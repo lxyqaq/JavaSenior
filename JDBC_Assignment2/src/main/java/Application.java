@@ -1,4 +1,4 @@
-package ui;
+import ui.*;
 
 /**
  * 程序主入口
