@@ -1,12 +1,15 @@
+/*
 import java.util.Scanner;
 
+*/
 /**
  * @ClassName HashTabDemo
  * @Description TODO
  * @Author lxyqaq @Email A00279565@student.ait.ie
  * @Date 2021/2/21 19:06
  * @Version 1.0
- */
+ *//*
+
 public class HashTabDemo {
     public static void main(String[] args) {
 
@@ -17,14 +20,16 @@ public class HashTabDemo {
         String key = "";
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("add:  添加雇员");
-            System.out.println("list: 显示雇员");
-            System.out.println("find: 查找雇员");
-            System.out.println("exit: 退出系统");
+            System.out.println("1.add:  添加雇员");
+            System.out.println("2.list: 显示雇员");
+            System.out.println("3.find: 查找雇员");
+            System.out.println("4.update: 修改雇员");
+            System.out.println("5.Delete: 删除雇员");
+            System.out.println("6.exit: 退出系统");
 
             key = scanner.next();
             switch (key) {
-                case "add":
+                case "1":
                     System.out.println("输入id");
                     int id = scanner.nextInt();
                     System.out.println("输入名字");
@@ -33,15 +38,25 @@ public class HashTabDemo {
                     Emp emp = new Emp(id, name);
                     hashTab.add(emp);
                     break;
-                case "list":
+                case "2":
                     hashTab.list();
                     break;
-                case "find":
+                case "3":
                     System.out.println("请输入要查找的id");
                     id = scanner.nextInt();
                     hashTab.findEmpById(id);
                     break;
-                case "exit":
+                case "4":
+                    System.out.println("请输入要修改的id");
+                    id = scanner.nextInt();
+                    hashTab.findEmpById(id);
+                    break;
+                case "5":
+                    System.out.println("请输入要删除的id");
+                    id = scanner.nextInt();
+                    hashTab.findEmpById(id);
+                    break;
+                case "6":
                     scanner.close();
                     System.exit(0);
                 default:
@@ -188,3 +203,4 @@ class EmpLinkedList {
         return curEmp;
     }
 }
+*/
