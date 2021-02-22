@@ -1,3 +1,4 @@
+package assign;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -13,7 +14,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class MyFrame3 extends JFrame implements ActionListener {
+/**
+ * @ClassName MainFrame
+ * @Description TODO
+ * @Author lxyqaq @Email A00279565@student.ait.ie
+ * @Date 2021/2/22 01:31
+ * @Version 1.0
+ */
+public class MainFrame extends JFrame implements ActionListener {
+
     private JLabel l0 = new JLabel("Employee");
     private JLabel l1 = new JLabel("ID");
     private JLabel l2 = new JLabel("Name");
@@ -29,11 +38,11 @@ public class MyFrame3 extends JFrame implements ActionListener {
     private JButton b5 = new JButton("Update");
     private JButton b6 = new JButton("Delete");
     private JPanel p1 = new JPanel();
-    private HashTable tree = new HashTable();
+    private HashT hashT = new HashT(10);
     private int current = 0;
+    private MainFrame mainFrame;
 
-    //CONSTRUCTOR
-    public MyFrame3(String s) {
+    public MainFrame(String s) {
         super(s);
         InsertInitialItems();
         Container content = getContentPane();
@@ -102,12 +111,14 @@ public class MyFrame3 extends JFrame implements ActionListener {
         getContentPane().setLayout(groupLayout);
         b3.addActionListener(this);
         b4.addActionListener(this);
+        b5.addActionListener(this);
+        b6.addActionListener(this);
         setSize(580, 370);
         setVisible(true);
     }
 
-    public HashTable readTable() {
-        return tree;
+    public HashT readTable() {
+        return hashT;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -117,19 +128,22 @@ public class MyFrame3 extends JFrame implements ActionListener {
             int id = Integer.parseInt(t1.getText());
             String nm = t2.getText();
             int ag = Integer.parseInt(t3.getText());
-            tree.insert(id, nm, ag);
+            Employee employee = new Employee(id, ag, nm);
+            hashT.add(employee);
         }
 
         if (target == b2) {
             int id = Integer.parseInt(t1.getText());
-            HNode temp = tree.search(id);
+            Employee temp = hashT.find(id);
+            int count = hashT.findStep(id);
             if (temp == null) {
                 t2.setText("Unknown");
                 t3.setText("");
             } else {
-                t1.setText("" + temp.readKey());
-                t2.setText("" + temp.readName());
-                t3.setText("" + temp.readAge());
+                t1.setText("" + temp.getId());
+                t2.setText("" + temp.getName());
+                t3.setText("" + temp.getAge());
+                JOptionPane.showMessageDialog(mainFrame, "Number of steps for a search: " + count +" steps", "report", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         if (target == b3) {
@@ -139,34 +153,45 @@ public class MyFrame3 extends JFrame implements ActionListener {
             new HashDisplay(this);
         }
 
+        if (target == b5) {
+            int id = Integer.parseInt(t1.getText());
+            String nm = t2.getText();
+            int ag = Integer.parseInt(t3.getText());
+            hashT.update(id, ag, nm);
+        }
+
+        if (target == b6) {
+            int id = Integer.parseInt(t1.getText());
+            System.out.println(id);
+            hashT.del(id);
+        }
+
     }
 
     public void InsertInitialItems() {
-        tree.insert(13, "T.Lee", 64);
-        tree.insert(4, "J.Jones", 22);
-        tree.insert(14, "M.Nally", 24);
-        tree.insert(1, "J.Smith", 22);
-        tree.insert(19, "T.Long", 68);
-        tree.insert(20, "M.Lar", 22);
-        tree.insert(2, "T.Black", 24);
-        tree.insert(15, "J.Orr", 42);
-        tree.insert(16, "T.Tim", 26);
-        tree.insert(18, "M.Moon", 77);
-        tree.insert(17, "Q.Tri", 36);
 
-        tree.insert(21, "M.Gee", 28);
-        tree.insert(22, "T.Sol", 49);
-        tree.insert(23, "M.Mars", 57);
-
-
-        tree.insert(3, "M.Gray", 24);
-        tree.insert(5, "T.Smith", 29);
-        tree.insert(6, "M.Mack", 54);
-        tree.insert(7, "J.Lacy", 42);
-        tree.insert(10, "T.Tone", 74);
-        tree.insert(11, "M.Mart", 27);
-        tree.insert(12, "J.Shine", 32);
+        hashT.add(new Employee(13, 24, "T.Lee"));
+        hashT.add(new Employee(4, 14, "T.Lee"));
+        hashT.add(new Employee(14, 41, "T.Lee"));
+        hashT.add(new Employee(1, 45, "T.Lee"));
+        hashT.add(new Employee(19, 56, "T.Lee"));
+        hashT.add(new Employee(20, 34, "T.Lee"));
+        hashT.add(new Employee(2, 12, "T.Lee"));
+        hashT.add(new Employee(15, 43, "T.Lee"));
+        hashT.add(new Employee(16, 78, "T.Lee"));
+        hashT.add(new Employee(18, 54, "T.Lee"));
+        hashT.add(new Employee(17, 67, "T.Lee"));
+        hashT.add(new Employee(21, 21, "T.Lee"));
+        hashT.add(new Employee(22, 78, "T.Lee"));
+        hashT.add(new Employee(23, 36, "T.Lee"));
+        hashT.add(new Employee(3, 89, "T.Lee"));
+        hashT.add(new Employee(5, 15, "T.Lee"));
+        hashT.add(new Employee(6, 62, "T.Lee"));
+        hashT.add(new Employee(7, 23, "T.Lee"));
+        hashT.add(new Employee(10, 58, "T.Lee"));
+        hashT.add(new Employee(11, 78, "T.Lee"));
+        hashT.add(new Employee(12, 65, "T.Lee"));
 
     }
-}
 
+}

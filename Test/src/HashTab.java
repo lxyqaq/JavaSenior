@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class HashTab {
 
-    //测试一把
     public static void main(String[] args) {
 
         HashT hashT = new HashT(10);
@@ -180,13 +179,15 @@ class CreateLinkedList {
     public Emp search(int id) {
         //建立一个辅助指针
         Emp temp = head;
-
+        int count = 0;
         while (temp != null && temp.getId() != id) {
             temp = temp.getNext();
+            count++;
         }
         if (temp == null) {
             return null;
         } else {
+            System.out.println(count);
             return temp;
         }
     }

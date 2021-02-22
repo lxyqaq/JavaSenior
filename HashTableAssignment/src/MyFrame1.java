@@ -4,10 +4,10 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import java.util.*; //This is new
+import java.util.*;
 
-class MyFrame1 extends JFrame implements ActionListener {
-    private JLabel l0 = new JLabel("Search Person App");
+public class MyFrame1 extends JFrame implements ActionListener {
+    private JLabel l0 = new JLabel("Search Employee App");
 
 
     private JButton b1 = new JButton("");
