@@ -30,12 +30,15 @@ public class CreateLinkedList {
 
 
     //删除
-    public void del(int id) {
+    public boolean del(int id) {
+
+        boolean isFlag = false;
 
         if (head.getNext() == null && head.getId() == id) {
             head = null;
         } else if (head.getNext() != null && head.getId() == id) {
             head = head.getNext();
+            isFlag = true;
         } else {
             //建立一个辅助指针
             Employee temp = head;
@@ -47,9 +50,12 @@ public class CreateLinkedList {
                 //已经找到要删除元素的前一个元素
                 temp.setNext(temp.getNext().getNext());
             } else {
-                System.out.println("哈希表中没有此元素");
+                isFlag = false;
             }
         }
+
+        return isFlag;
+
     }
 
     //查找

@@ -57,7 +57,6 @@ public class MainFrame extends JFrame implements ActionListener {
         b1.addActionListener(this);
         b2.addActionListener(this);
 
-
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         groupLayout.setHorizontalGroup(
                 groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -122,12 +121,18 @@ public class MainFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         Object target = e.getSource();
+
         if (target == b1) {
-            int id = Integer.parseInt(t1.getText());
-            String nm = t2.getText();
-            int ag = Integer.parseInt(t3.getText());
-            Employee employee = new Employee(id, ag, nm);
-            hashT.add(employee);
+            if (t1.getText().isBlank() && t2.getText().isBlank() && t3.getText().isBlank()) {
+                JOptionPane.showMessageDialog(mainFrame, "请输入信息", "report", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int id = Integer.parseInt(t1.getText());
+                String nm = t2.getText();
+                int ag = Integer.parseInt(t3.getText());
+                Employee employee = new Employee(id, ag, nm);
+                hashT.add(employee);
+                JOptionPane.showMessageDialog(mainFrame, "成功", "report", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
 
         if (target == b2) {
@@ -144,24 +149,34 @@ public class MainFrame extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(mainFrame, "Number of steps for a search: " + count + " steps", "report", JOptionPane.INFORMATION_MESSAGE);
             }
         }
+
         if (target == b3) {
             this.setVisible(false);
         }
+
         if (target == b4) {
             new HashDisplay(this);
         }
 
         if (target == b5) {
-            int id = Integer.parseInt(t1.getText());
-            String nm = t2.getText();
-            int ag = Integer.parseInt(t3.getText());
-            hashT.update(id, ag, nm);
+            if (t1.getText().isBlank() && t2.getText().isBlank() && t3.getText().isBlank()) {
+                JOptionPane.showMessageDialog(mainFrame, "请输入信息", "report", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int id = Integer.parseInt(t1.getText());
+                String nm = t2.getText();
+                int ag = Integer.parseInt(t3.getText());
+                hashT.update(id, ag, nm);
+                JOptionPane.showMessageDialog(mainFrame, "成功", "report", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
 
         if (target == b6) {
             int id = Integer.parseInt(t1.getText());
-            System.out.println(id);
-            hashT.del(id);
+            if (hashT.del(id)) {
+                JOptionPane.showMessageDialog(mainFrame, "成功", "report", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(mainFrame, "没有找到该元素", "report", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
     }

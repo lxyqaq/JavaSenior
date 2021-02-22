@@ -35,16 +35,10 @@ public class HashT {
     }
 
     //删除
-    public void del(int id) {
+    public boolean del(int id) {
         int position = Hash(id);
-        arr[position].del(id);
-    }
-
-    //展示
-    public void show() {
-        for (int i = 0; i < size; i++) {
-            arr[i].show(i);
-        }
+        boolean del = arr[position].del(id);
+        return del;
     }
 
     //查找
