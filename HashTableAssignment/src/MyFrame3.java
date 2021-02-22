@@ -162,7 +162,7 @@ public class MyFrame3 extends JFrame implements ActionListener {
         tree.insert(3, "M.Gray", 24);
         tree.insert(5, "T.Smith", 29);
         tree.insert(6, "M.Mack", 54);
-        tree.insert(7, "J.Lacy", 42);
+        tree.insert(7, "M.Mack", 42);
         tree.insert(10, "T.Tone", 74);
         tree.insert(11, "M.Mart", 27);
         tree.insert(12, "J.Shine", 32);

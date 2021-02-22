@@ -124,14 +124,14 @@ public class MainFrame extends JFrame implements ActionListener {
 
         if (target == b1) {
             if (t1.getText().isBlank() && t2.getText().isBlank() && t3.getText().isBlank()) {
-                JOptionPane.showMessageDialog(mainFrame, "请输入信息", "report", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mainFrame, "Please enter information", "report", JOptionPane.ERROR_MESSAGE);
             } else {
                 int id = Integer.parseInt(t1.getText());
                 String nm = t2.getText();
                 int ag = Integer.parseInt(t3.getText());
                 Employee employee = new Employee(id, ag, nm);
                 hashT.add(employee);
-                JOptionPane.showMessageDialog(mainFrame, "成功", "report", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(mainFrame, "Inserted successfully", "report", JOptionPane.INFORMATION_MESSAGE);
             }
         }
 
@@ -159,51 +159,61 @@ public class MainFrame extends JFrame implements ActionListener {
         }
 
         if (target == b5) {
-            if (t1.getText().isBlank() && t2.getText().isBlank() && t3.getText().isBlank()) {
-                JOptionPane.showMessageDialog(mainFrame, "请输入信息", "report", JOptionPane.ERROR_MESSAGE);
+            if (t1.getText().isBlank() || t2.getText().isBlank() || t3.getText().isBlank()) {
+                JOptionPane.showMessageDialog(mainFrame, "Please enter information", "report", JOptionPane.ERROR_MESSAGE);
             } else {
                 int id = Integer.parseInt(t1.getText());
                 String nm = t2.getText();
                 int ag = Integer.parseInt(t3.getText());
                 hashT.update(id, ag, nm);
-                JOptionPane.showMessageDialog(mainFrame, "成功", "report", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(mainFrame, "Update successfully", "report", JOptionPane.INFORMATION_MESSAGE);
+                refershTable();
             }
         }
 
         if (target == b6) {
             int id = Integer.parseInt(t1.getText());
             if (hashT.del(id)) {
-                JOptionPane.showMessageDialog(mainFrame, "成功", "report", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(mainFrame, "Delete successfully", "report", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(mainFrame, "没有找到该元素", "report", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mainFrame, "The ID does not exist and cannot be deleted", "report", JOptionPane.ERROR_MESSAGE);
+                refershTable();
             }
         }
 
     }
 
+    public void refershTable() {
+        t1.setText("");
+        t2.setText("");
+        t3.setText("");
+    }
+
     public void InsertInitialItems() {
 
         hashT.add(new Employee(13, 24, "T.Lee"));
-        hashT.add(new Employee(4, 14, "T.Lee"));
-        hashT.add(new Employee(14, 41, "T.Lee"));
-        hashT.add(new Employee(1, 45, "T.Lee"));
-        hashT.add(new Employee(19, 56, "T.Lee"));
-        hashT.add(new Employee(20, 34, "T.Lee"));
-        hashT.add(new Employee(2, 12, "T.Lee"));
-        hashT.add(new Employee(15, 43, "T.Lee"));
-        hashT.add(new Employee(16, 78, "T.Lee"));
-        hashT.add(new Employee(18, 54, "T.Lee"));
-        hashT.add(new Employee(17, 67, "T.Lee"));
-        hashT.add(new Employee(21, 21, "T.Lee"));
-        hashT.add(new Employee(22, 78, "T.Lee"));
-        hashT.add(new Employee(23, 36, "T.Lee"));
-        hashT.add(new Employee(3, 89, "T.Lee"));
-        hashT.add(new Employee(5, 15, "T.Lee"));
-        hashT.add(new Employee(6, 62, "T.Lee"));
-        hashT.add(new Employee(7, 23, "T.Lee"));
-        hashT.add(new Employee(10, 58, "T.Lee"));
-        hashT.add(new Employee(11, 78, "T.Lee"));
-        hashT.add(new Employee(12, 65, "T.Lee"));
+        hashT.add(new Employee(4, 14, "J.Jones"));
+        hashT.add(new Employee(14, 41, "M.Nally"));
+        hashT.add(new Employee(1, 45, "J.Smith"));
+        hashT.add(new Employee(19, 56, "T.Long"));
+        hashT.add(new Employee(20, 34, "M.Lar"));
+        hashT.add(new Employee(2, 12, "T.Black"));
+        hashT.add(new Employee(15, 43, "J.Orr"));
+        hashT.add(new Employee(16, 78, "T.Tim"));
+        hashT.add(new Employee(18, 54, "M.Moon"));
+        hashT.add(new Employee(17, 67, "Q.Tri"));
+        hashT.add(new Employee(21, 21, "M.Gee"));
+        hashT.add(new Employee(22, 78, "T.Sol"));
+        hashT.add(new Employee(23, 36, "M.Mars"));
+        hashT.add(new Employee(3, 89, "M.Gray"));
+        hashT.add(new Employee(5, 15, "T.Smith"));
+        hashT.add(new Employee(6, 62, "M.Mack"));
+        hashT.add(new Employee(7, 23, "M.Blank"));
+        hashT.add(new Employee(10, 58, "T.Tone"));
+        hashT.add(new Employee(11, 78, "M.Mart"));
+        hashT.add(new Employee(12, 65, "J.Shine"));
+        hashT.add(new Employee(8, 63, "J.James"));
+        hashT.add(new Employee(9, 91, "J.Faker"));
 
     }
 
