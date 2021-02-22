@@ -2,9 +2,7 @@ package assign;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
-
 import java.util.*;
 import java.awt.EventQueue;
 
@@ -143,7 +141,7 @@ public class MainFrame extends JFrame implements ActionListener {
                 t1.setText("" + temp.getId());
                 t2.setText("" + temp.getName());
                 t3.setText("" + temp.getAge());
-                JOptionPane.showMessageDialog(mainFrame, "Number of steps for a search: " + count +" steps", "report", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(mainFrame, "Number of steps for a search: " + count + " steps", "report", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         if (target == b3) {
