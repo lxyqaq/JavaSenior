@@ -11,6 +11,18 @@ public class CreateLinkedList {
 
     private Employee head;
 
+    public Employee search(int id) {
+        Employee temp = head;
+        while (temp != null && temp.getId() != id) {
+            temp = temp.getNext();
+        }
+        if (temp == null) {
+            return null;
+        } else {
+            return temp;
+        }
+    }
+
     public void add(Employee emp) {
         if (head == null) {
             head = emp;
@@ -42,20 +54,6 @@ public class CreateLinkedList {
             }
         }
         return isFlag;
-    }
-
-    public Employee search(int id) {
-        Employee temp = head;
-        int count = 1;
-        while (temp != null && temp.getId() != id) {
-            count++;
-            temp = temp.getNext();
-        }
-        if (temp == null) {
-            return null;
-        } else {
-            return temp;
-        }
     }
 
     public int searchStep(int id) {

@@ -5,7 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class HashDisplay extends JFrame implements ActionListener {
+public class HashDisplay extends JFrame implements ActionListener {
+
     private JLabel l0 = new JLabel("Display Hash Table");
     private JTextArea tArea = new JTextArea("");
     private JScrollPane scrollPane = new JScrollPane(tArea);
