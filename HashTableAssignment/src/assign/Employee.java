@@ -2,8 +2,8 @@ package assign;
 
 /**
  * @ClassName Employee
- * @Description TODO
- * @Author lxyqaq @Email A00279565@student.ait.ie
+ * @Description Employee
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
  * @Date 2021/2/22 01:34
  * @Version 1.0
  */

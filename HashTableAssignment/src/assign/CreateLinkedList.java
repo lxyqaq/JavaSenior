@@ -2,14 +2,18 @@ package assign;
 
 /**
  * @ClassName CreateLinkedList
- * @Description TODO
- * @Author lxyqaq @Email A00279565@student.ait.ie
+ * @Description Linked list
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
  * @Date 2021/2/22 01:34
  * @Version 1.0
  */
 public class CreateLinkedList {
 
     private Employee head;
+
+    public Employee getHead() {
+        return head;
+    }
 
     public Employee search(int id) {
         Employee temp = head;
@@ -69,10 +73,6 @@ public class CreateLinkedList {
             count++;
             return count;
         }
-    }
-
-    public Employee getHead() {
-        return head;
     }
 
 }

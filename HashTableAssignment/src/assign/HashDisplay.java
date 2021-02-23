@@ -22,10 +22,8 @@ public class HashDisplay extends JFrame implements ActionListener {
         hashT = parent.readTable();
         head = hashT.readEmployee();
         Container content = getContentPane();
-        //	content.setLayout(new FlowLayout());
         content.setLayout(null);
         Font f = new Font("TimesRoman", Font.BOLD, 20);
-        //p1.setLayout(new GridLayout(3,1));
         l0.setFont(f);
         b1.setFont(f);
         content.add(l0);

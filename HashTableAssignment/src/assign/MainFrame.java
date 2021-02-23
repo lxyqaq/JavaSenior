@@ -14,8 +14,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  * @ClassName MainFrame
- * @Description TODO
- * @Author lxyqaq @Email A00279565@student.ait.ie
+ * @Description MainFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
  * @Date 2021/2/22 01:31
  * @Version 1.0
  */
@@ -37,7 +37,6 @@ public class MainFrame extends JFrame implements ActionListener {
     private JButton b6 = new JButton("Delete");
     private JPanel p1 = new JPanel();
     private HashT hashT = new HashT(10);
-    private int current = 0;
     private MainFrame mainFrame;
 
     public MainFrame(String s) {
@@ -214,6 +213,8 @@ public class MainFrame extends JFrame implements ActionListener {
         hashT.add(new Employee(12, 65, "J.Shine"));
         hashT.add(new Employee(8, 63, "J.James"));
         hashT.add(new Employee(9, 91, "J.Faker"));
+        hashT.add(new Employee(24, 12, "S.Jane"));
+        hashT.add(new Employee(25, 7, "W.Kobe"));
 
     }
 
