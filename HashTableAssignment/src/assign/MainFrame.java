@@ -172,7 +172,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
         if (target == b6) {
             int id = Integer.parseInt(t1.getText());
-            if (hashT.del(id)) {
+            if (hashT.del(id) == true) {
                 JOptionPane.showMessageDialog(mainFrame, "Delete successfully", "report", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(mainFrame, "The ID does not exist and cannot be deleted", "report", JOptionPane.ERROR_MESSAGE);

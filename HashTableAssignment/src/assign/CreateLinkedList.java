@@ -40,12 +40,11 @@ public class CreateLinkedList {
     }
 
     public boolean del(int id) {
-        boolean isFlag = false;
+        boolean isFlag = true;
         if (head.getNext() == null && head.getId() == id) {
             head = null;
         } else if (head.getNext() != null && head.getId() == id) {
             head = head.getNext();
-            isFlag = true;
         } else {
             Employee temp = head;
             while (temp.getNext() != null && temp.getNext().getId() != id) {
