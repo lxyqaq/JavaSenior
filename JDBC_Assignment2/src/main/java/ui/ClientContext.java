@@ -27,6 +27,7 @@ import entity.StockHistory;
  * @Version 1.0
  */
 public class ClientContext {
+
     private MainFrame mainFrame;
     private LoginFrame loginFrame;
     private ModifyPwdFrame modifyPwdFrame;
@@ -98,7 +99,6 @@ public class ClientContext {
 
     public void showOrHidePurchaseFrame(boolean showOrHide) {
         purchaseFrame.setVisible(showOrHide);
-
     }
 
     public void showSellFrame() {
@@ -297,27 +297,26 @@ public class ClientContext {
     }
 
     public void writeToFile(ResultSet rs) {
-        try{
-            System.out.println("In writeToFile");
+        try {
             FileWriter outputFile = new FileWriter("product.csv");
             PrintWriter printWriter = new PrintWriter(outputFile);
             ResultSetMetaData rsmd = rs.getMetaData();
             int numColumns = rsmd.getColumnCount();
-
-            for(int i=0;i<numColumns;i++){
-                printWriter.print(rsmd.getColumnLabel(i+1)+",");
+            for (int i = 0; i < numColumns; i++) {
+                printWriter.print(rsmd.getColumnLabel(i + 1) + ",");
             }
             printWriter.print("\n");
-            while(rs.next()){
-                for(int i=0;i<numColumns;i++){
-                    printWriter.print(rs.getString(i+1)+",");
+            while (rs.next()) {
+                for (int i = 0; i < numColumns; i++) {
+                    printWriter.print(rs.getString(i + 1) + ",");
                 }
                 printWriter.print("\n");
                 printWriter.flush();
             }
             printWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch(Exception e){e.printStackTrace();}
     }
 
     public void export() {

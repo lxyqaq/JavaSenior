@@ -51,7 +51,7 @@ public class MainFrame extends JFrame {
     private Component createFunctionPanel() {
         Image image = new ImageIcon(MainFrame.class.getResource("/icon/bg.jpg")).getImage();
         JPanel panel = new BackgroundPanel(image);
-        Font font16 = new Font("微软雅黑", 1, 16);
+        Font font16 = new Font("Times New Roman", 1, 16);
 
         JButton sale = new JButton("Sales", new ImageIcon(MainFrame.class.getResource("/icon/sell.png")));
         sale.setHorizontalTextPosition(SwingConstants.CENTER);
