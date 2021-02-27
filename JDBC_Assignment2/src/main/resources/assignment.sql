@@ -1,7 +1,5 @@
-CREATE
-    SCHEMA IF EXISTS `psims`;
-USE
-    psims;
+CREATE SCHEMA `psims`;
+USE `psims`;
 -- ----------------------------
 -- Table structure for password
 -- ----------------------------
