@@ -31,10 +31,13 @@ public class StockHistoryDao {
      */
     public Vector<StockHistory> findAllHistory() {
         Vector<StockHistory> ret = new Vector<>();
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("select * from stock_history order by stock_date desc");
-            ResultSet rs = pstmt.executeQuery();
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("select * from stock_history order by stock_date desc");
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 StockHistory sh = new StockHistory();
                 sh.setSid(rs.getInt("sh_id"));
@@ -47,11 +50,7 @@ public class StockHistoryDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
         return ret;
     }
@@ -65,10 +64,12 @@ public class StockHistoryDao {
      * @date 2021/2/18 14:20
      */
     public void saveStockHistory(StockHistory sh) {
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         String sql = "insert into stock_history(product_id, stock_date ,quantity) values(?,?,?)";
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, sh.getProductId());
             pstmt.setString(2, sdf.format(new Date()));
             pstmt.setInt(3, sh.getQuantity());
@@ -76,11 +77,7 @@ public class StockHistoryDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt);
         }
     }
 

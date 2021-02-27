@@ -30,12 +30,14 @@ public class SellHistoryDao {
      * @date 2021/2/18 14:12
      */
     public Vector<SellHistory> findAllHistory() {
-        Vector<SellHistory> ret = new Vector<SellHistory>();
-
-        Connection conn = DataBaseUtil.getConnection();
+        Vector<SellHistory> ret = new Vector<>();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("select * from sell_history order by sell_date desc");
-            ResultSet rs = pstmt.executeQuery();
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("select * from sell_history order by sell_date desc");
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 SellHistory sh = new SellHistory();
                 sh.setShId(rs.getInt("sh_id"));
@@ -45,15 +47,10 @@ public class SellHistoryDao {
                 sh.setQuantity(rs.getInt("quantity"));
                 ret.add(sh);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+           DataBaseUtil.closeResource(conn, pstmt, rs);
         }
         return ret;
     }
@@ -67,10 +64,12 @@ public class SellHistoryDao {
      * @date 2021/2/18 14:18
      */
     public void saveSellHistory(SellHistory sh) {
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         String sql = "insert into sell_history(product_id, sell_date ,quantity) values(?,?,?)";
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, sh.getProductId());
             pstmt.setString(2, sdf.format(new Date()));
             pstmt.setInt(3, sh.getQuantity());
@@ -78,11 +77,7 @@ public class SellHistoryDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt);
         }
     }
 
