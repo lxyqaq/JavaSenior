@@ -50,9 +50,9 @@ public class DataBaseUtil {
     /**
      * @param conn
      * @param ps
-     * @description 关闭连接和Statement的操作
-     * @author lxyqaq @email A00279565@student.ait.ie
-     * @date 2021/1/25 23:02
+     * @description close resource
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/8 23:02
      */
     public static void closeResource(Connection conn, Statement ps) {
         try {
@@ -73,9 +73,9 @@ public class DataBaseUtil {
      * @param conn
      * @param ps
      * @param rs
-     * @description 关闭资源操作
-     * @author lxyqaq @email A00279565@student.ait.ie
-     * @date 2021/1/25 23:03
+     * @description close resource
+     * @author Xiangyu Liu @email A00279565@student.ait.ie
+     * @date 2021/2/8 23:03
      */
     public static void closeResource(Connection conn, Statement ps, ResultSet rs) {
         try {
