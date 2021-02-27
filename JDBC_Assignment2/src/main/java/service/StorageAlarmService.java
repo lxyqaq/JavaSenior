@@ -30,11 +30,14 @@ public class StorageAlarmService {
      * @date 2021/2/18 14:34
      */
     public boolean checkStorage() {
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         String sql = "select count(*) from product p where p.storage<p.alarm_storage";
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
             boolean ret = false;
             while (rs.next()) {
                 int count = rs.getInt(1);
@@ -47,11 +50,7 @@ public class StorageAlarmService {
             e.printStackTrace();
             return false;
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
     }
 
@@ -63,12 +62,15 @@ public class StorageAlarmService {
      * @date 2021/2/18 14:34
      */
     public Vector<Product> findAlarmProduct() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         String sql = "select * from product p0 where p0.product_id in(select product_id from product p where p.storage<p.alarm_storage)";
-        Vector<Product> ret = new Vector<Product>();
-        Connection conn = DataBaseUtil.getConnection();
+        Vector<Product> ret = new Vector<>();
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
                 p.setCatogery(rs.getInt("catogery"));
@@ -85,11 +87,7 @@ public class StorageAlarmService {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
         return ret;
     }
