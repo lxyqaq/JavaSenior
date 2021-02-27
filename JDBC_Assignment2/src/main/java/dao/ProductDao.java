@@ -30,10 +30,13 @@ public class ProductDao {
      */
     public Vector<Product> findAllProduct() {
         Vector<Product> ret = new Vector<>();
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("select * from product");
-            ResultSet rs = pstmt.executeQuery();
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("select * from product");
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
                 p.setCatogery(rs.getInt("catogery"));
@@ -50,11 +53,7 @@ public class ProductDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
         return ret;
     }
@@ -69,11 +68,14 @@ public class ProductDao {
      */
     public Vector<Product> findProductByCategory(int cid) {
         Vector<Product> ret = new Vector<>();
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("select * from product where catogery=?");
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("select * from product where catogery=?");
             pstmt.setInt(1, cid);
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
                 p.setCatogery(rs.getInt("catogery"));
@@ -90,11 +92,7 @@ public class ProductDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
         return ret;
     }
@@ -110,11 +108,14 @@ public class ProductDao {
      */
     public Vector<Product> findProductByCategory(int cid, String order) {
         Vector<Product> ret = new Vector<>();
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("select * from product where catogery=? order by storage " + order);
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("select * from product where catogery=? order by storage " + order);
             pstmt.setInt(1, cid);
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
                 p.setCatogery(rs.getInt("catogery"));
@@ -131,11 +132,7 @@ public class ProductDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
         return ret;
     }
@@ -149,12 +146,15 @@ public class ProductDao {
      * @date 2021/2/18 14:00
      */
     public Product findProductByNo(String no) {
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("select * from product where product_no=?");
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("select * from product where product_no=?");
             Product p = null;
             pstmt.setString(1, no);
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 p = new Product();
                 p.setCatogery(rs.getInt("catogery"));
@@ -172,11 +172,7 @@ public class ProductDao {
             e.printStackTrace();
             return null;
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
     }
 
@@ -190,11 +186,13 @@ public class ProductDao {
      */
     public Vector<Product> findAllProduct(String order) {
         Vector<Product> ret = new Vector<Product>();
-
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("select * from product order by storage " + order);
-            ResultSet rs = pstmt.executeQuery();
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("select * from product order by storage " + order);
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
                 p.setCatogery(rs.getInt("catogery"));
@@ -211,11 +209,7 @@ public class ProductDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
         return ret;
     }
@@ -229,10 +223,12 @@ public class ProductDao {
      * @date 2021/2/18 14:02
      */
     public void saveProduct(Product product) {
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         String sql = "insert into product(product_no, name ,catogery,price, pur_price, stock_date, storage, alarm_storage) values(?,?,?,?,?,?,?,?)";
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, product.getProductNo());
             pstmt.setString(2, product.getName());
             pstmt.setInt(3, product.getCatogery());
@@ -245,11 +241,7 @@ public class ProductDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt);
         }
     }
 
@@ -262,11 +254,14 @@ public class ProductDao {
      * @date 2021/2/18 14:02
      */
     public Product findProduct(int pid) {
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("select * from product where product_id=?");
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("select * from product where product_id=?");
             pstmt.setInt(1, pid);
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             Product p = new Product();
             while (rs.next()) {
                 p.setCatogery(rs.getInt("catogery"));
@@ -283,11 +278,7 @@ public class ProductDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
         return null;
     }
@@ -301,19 +292,17 @@ public class ProductDao {
      * @date 2021/2/18 14:04
      */
     public void deleteProduct(int pid) {
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("delete from product where product_id=?");
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("delete from product where product_id=?");
             pstmt.setInt(1, pid);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt);
         }
     }
 
@@ -327,23 +316,21 @@ public class ProductDao {
      * @date 2021/2/18 14:09
      */
     public void updateStorage(int productId, int storage) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         Product p = this.findProduct(productId);
         int ns = p.getStorage() + storage;
-        Connection conn = DataBaseUtil.getConnection();
         String sql = "update product set storage=? where product_id=?";
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, ns);
             pstmt.setInt(2, productId);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt);
         }
     }
 
@@ -356,10 +343,12 @@ public class ProductDao {
      * @date 2021/2/18 14:09
      */
     public void updateProduct(Product product) {
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         String sql = "update product set product_no=?, name=? ,catogery=?, price=?, pur_price=?, stock_date=?, storage=?, alarm_storage=? where product_id=?";
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, product.getProductNo());
             pstmt.setString(2, product.getName());
             pstmt.setInt(3, product.getCatogery());
@@ -373,11 +362,7 @@ public class ProductDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt);
         }
     }
 

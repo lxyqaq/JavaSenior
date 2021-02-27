@@ -22,24 +22,23 @@ public class LoginDao {
      * @date 2021/2/18 13:48
      */
     public static String getPwd() {
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("select * from password");
-            ResultSet rs = pstmt.executeQuery();
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("select * from password");
+            rs = pstmt.executeQuery();
             String pwd = null;
             while (rs.next()) {
                 pwd = rs.getString("pwd");
             }
             return pwd;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
             return null;
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
     }
 
@@ -52,19 +51,17 @@ public class LoginDao {
      * @date 2021/2/18 13:49
      */
     public static void updatePwd(String newPwd) {
-        Connection conn = DataBaseUtil.getConnection();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("update password set pwd=?");
+            conn = DataBaseUtil.getConnection();
+            pstmt = conn.prepareStatement("update password set pwd=?");
             pstmt.setString(1, newPwd);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtil.closeResource(conn, pstmt);
         }
     }
 
