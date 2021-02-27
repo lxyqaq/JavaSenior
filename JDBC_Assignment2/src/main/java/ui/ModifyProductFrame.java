@@ -17,9 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * 更新商品信息窗口
- *
- * @author xujinnan
+ * @ClassName ModifyProductFrame
+ * @Description ModifyProductFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/13 22:19
+ * @Version 1.0
  */
 public class ModifyProductFrame extends JFrame {
 

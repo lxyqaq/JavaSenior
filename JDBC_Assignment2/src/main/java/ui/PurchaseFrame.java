@@ -19,6 +19,13 @@ import dao.ProductDao;
 import entity.Product;
 import entity.ProductOption;
 
+/**
+ * @ClassName PurchaseFrame
+ * @Description PurchaseFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 22:19
+ * @Version 1.0
+ */
 public class PurchaseFrame extends JFrame {
 
     private static final long serialVersionUID = 3743009130266090272L;

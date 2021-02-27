@@ -16,6 +16,13 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * @ClassName LoginFrame
+ * @Description LoginFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/11 22:19
+ * @Version 1.0
+ */
 public class LoginFrame extends JFrame {
 
     private static final long serialVersionUID = 8486147879661945934L;

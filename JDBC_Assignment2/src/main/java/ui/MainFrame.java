@@ -17,6 +17,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * @ClassName MainFrame
+ * @Description MainFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/12 22:19
+ * @Version 1.0
+ */
 public class MainFrame extends JFrame {
 
     private static final long serialVersionUID = -8808883923263763897L;

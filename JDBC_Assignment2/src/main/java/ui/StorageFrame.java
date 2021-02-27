@@ -25,9 +25,16 @@ import javax.swing.table.DefaultTableModel;
 import dao.ProductDao;
 import entity.Product;
 
+/**
+ * @ClassName StorageFrame
+ * @Description StorageFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 12:19
+ * @Version 1.0
+ */
 public class StorageFrame extends JFrame {
-    private static final long serialVersionUID = -8808883923263763897L;
 
+    private static final long serialVersionUID = -8808883923263763897L;
     private ClientContext clientContext;
     private JScrollPane storagePanel;
     private JTable storageTable;

@@ -25,9 +25,16 @@ import javax.swing.table.DefaultTableModel;
 import dao.StockHistoryDao;
 import entity.StockHistory;
 
+/**
+ * @ClassName StockHistoryFrame
+ * @Description StockHistoryFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 22:19
+ * @Version 1.0
+ */
 public class StockHistoryFrame extends JFrame {
-    private static final long serialVersionUID = -8808883923263763897L;
 
+    private static final long serialVersionUID = -8808883923263763897L;
     private ClientContext clientContext;
     private JScrollPane stockHistoryPanel;
     private JTable stockHistoryTable;
@@ -154,16 +161,16 @@ public class StockHistoryFrame extends JFrame {
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
                 bufferHeader.append(dtm.getColumnName(j));
-                if (j!=nCol) bufferHeader.append(", ");
+                if (j != nCol) bufferHeader.append(", ");
             }
             writer.write(bufferHeader.toString() + "\r\n");
 
             //write row information
-            for (int i = 0 ; i < nRow ; i++){
+            for (int i = 0; i < nRow; i++) {
                 StringBuffer buffer = new StringBuffer();
-                for (int j = 0 ; j < nCol ; j++){
-                    buffer.append(dtm.getValueAt(i,j));
-                    if (j!=nCol) buffer.append(", ");
+                for (int j = 0; j < nCol; j++) {
+                    buffer.append(dtm.getValueAt(i, j));
+                    if (j != nCol) buffer.append(", ");
                 }
                 writer.write(buffer.toString() + "\r\n");
             }

@@ -25,7 +25,13 @@ import service.StorageAlarmService;
 
 import entity.Product;
 
-
+/**
+ * @ClassName StorageAlarmFrame
+ * @Description StorageAlarmFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 22:19
+ * @Version 1.0
+ */
 public class StorageAlarmFrame extends JFrame {
     private static final long serialVersionUID = -8808883923263763897L;
 

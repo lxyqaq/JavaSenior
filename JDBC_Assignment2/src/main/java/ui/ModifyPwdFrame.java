@@ -17,6 +17,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * @ClassName ModifyPwdFrame
+ * @Description ModifyPwdFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 11:19
+ * @Version 1.0
+ */
 public class ModifyPwdFrame extends JFrame {
 
     private static final long serialVersionUID = 8486147879661945934L;

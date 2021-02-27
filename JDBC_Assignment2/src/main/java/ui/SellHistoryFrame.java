@@ -25,13 +25,15 @@ import dao.SellHistoryDao;
 import entity.SellHistory;
 
 /**
- * 销售历史记录窗口
- *
- * @author xujinnan
+ * @ClassName SellHistoryFrame
+ * @Description SellHistoryFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 22:19
+ * @Version 1.0
  */
 public class SellHistoryFrame extends JFrame {
-    private static final long serialVersionUID = -8808883923263763897L;
 
+    private static final long serialVersionUID = -8808883923263763897L;
     private ClientContext clientContext;
     private JScrollPane sellHistoryPanel;
     private JTable sellHistoryTable;
@@ -157,16 +159,16 @@ public class SellHistoryFrame extends JFrame {
             StringBuffer bufferHeader = new StringBuffer();
             for (int j = 0; j < nCol; j++) {
                 bufferHeader.append(dtm.getColumnName(j));
-                if (j!=nCol) bufferHeader.append(", ");
+                if (j != nCol) bufferHeader.append(", ");
             }
             writer.write(bufferHeader.toString() + "\r\n");
 
             //write row information
-            for (int i = 0 ; i < nRow ; i++){
+            for (int i = 0; i < nRow; i++) {
                 StringBuffer buffer = new StringBuffer();
-                for (int j = 0 ; j < nCol ; j++){
-                    buffer.append(dtm.getValueAt(i,j));
-                    if (j!=nCol) buffer.append(", ");
+                for (int j = 0; j < nCol; j++) {
+                    buffer.append(dtm.getValueAt(i, j));
+                    if (j != nCol) buffer.append(", ");
                 }
                 writer.write(buffer.toString() + "\r\n");
             }

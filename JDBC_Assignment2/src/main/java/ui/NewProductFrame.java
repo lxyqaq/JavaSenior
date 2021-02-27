@@ -16,6 +16,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * @ClassName NewProductFrame
+ * @Description NewProductFrame
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 22:19
+ * @Version 1.0
+ */
 public class NewProductFrame extends JFrame {
 
     private static final long serialVersionUID = 303139940819412480L;

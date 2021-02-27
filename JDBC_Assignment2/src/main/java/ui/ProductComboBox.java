@@ -7,9 +7,11 @@ import javax.swing.JComboBox;
 import entity.ProductOption;
 
 /**
- * 自定义下拉框，用于展示商品，可以对value与text做绑定
- *
- * @author xujinnan
+ * @ClassName ProductComboBox
+ * @Description ProductComboBox
+ * @Author Xiangyu Liu @Email A00279565@student.ait.ie
+ * @Date 2021/2/10 22:19
+ * @Version 1.0
  */
 public class ProductComboBox extends JComboBox {
 
