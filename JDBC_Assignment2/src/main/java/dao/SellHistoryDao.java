@@ -50,7 +50,7 @@ public class SellHistoryDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-           DataBaseUtil.closeResource(conn, pstmt, rs);
+            DataBaseUtil.closeResource(conn, pstmt, rs);
         }
         return ret;
     }
