@@ -60,7 +60,9 @@ CREATE TABLE `sell_history` (
                                 `product_id` int DEFAULT NULL,
                                 `sell_date` text,
                                 `quantity` int DEFAULT NULL,
-                                PRIMARY KEY (`sh_id`)
+                                PRIMARY KEY (`sh_id`),
+                                KEY `product_id` (`product_id`),
+                                CONSTRAINT `sell_history_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -98,7 +100,9 @@ CREATE TABLE `stock_history` (
                                  `product_id` int DEFAULT NULL,
                                  `stock_date` text,
                                  `quantity` int DEFAULT NULL,
-                                 PRIMARY KEY (`sh_id`)
+                                 PRIMARY KEY (`sh_id`),
+                                 KEY `product_id` (`product_id`),
+                                 CONSTRAINT `stock_history_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
