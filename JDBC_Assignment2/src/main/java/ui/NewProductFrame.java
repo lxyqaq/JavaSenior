@@ -42,7 +42,7 @@ public class NewProductFrame extends JFrame {
 
     public void init() {
         this.setTitle("New arrivals");
-        this.setSize(600, 430);
+        this.setSize(640, 430);
         this.setContentPane(createContentPane());
         int windowWidth = this.getWidth();
         int windowHeight = this.getHeight();
