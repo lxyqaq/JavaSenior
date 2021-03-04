@@ -229,7 +229,7 @@ public class ClientContext {
     public void addCart() {
         String qtyTxt = cartFrame.getProductQty().getText();
         if (qtyTxt == null || qtyTxt.trim().length() == 0) {
-            JOptionPane.showMessageDialog(cartFrame, "Please enter the quantity of goods!", "Add to cart", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(cartFrame, "Please enter the correct product!", "Add to cart", JOptionPane.WARNING_MESSAGE);
             return;
         }
         if (!isNumeric(qtyTxt)) {
