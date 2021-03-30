@@ -4,9 +4,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 
-
-class Module implements Container, Iterator {
-
+public class Module implements Container, Iterator {
 
     private String name;
     private String lecturer;
@@ -49,4 +47,5 @@ class Module implements Container, Iterator {
         Student res = list[index++];
         return res;
     }
+
 }
