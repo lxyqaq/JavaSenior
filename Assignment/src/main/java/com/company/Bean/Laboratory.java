@@ -1,6 +1,7 @@
 package com.company.Bean;
 
 public class Laboratory {
+
     private int ID;
     private String laboratoryName;
     private String freeTime;
