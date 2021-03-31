@@ -5,8 +5,9 @@ import com.company.Main;
 import com.company.TeacherMainView;
 
 import javax.swing.*;
+import java.util.List;
 
-public class Teacher implements Person {
+public class Teacher implements Person, Iterator {
 
     public void accept(Visitor v) {
         v.visit(this);
@@ -17,14 +18,35 @@ public class Teacher implements Person {
         teacherLogin();
     }
 
+    @Override
+    public boolean hasNext() {
+        if (position >= itemList.size()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public Object next() {
+        return itemList.get(position++);
+    }
+
     private int ID;
     private String TeacherAccount;
     private String password;
     private String TeacherName;
     private String TeacherSex;
 
+    private List<Teacher> itemList;
+    private int position;
+
     public Teacher() {
 
+    }
+
+    public Teacher(List<Teacher> itemList) {
+        this.itemList = itemList;
     }
 
     public Teacher(String teacherAccount, String password, String teacherName, String teacherSex) {

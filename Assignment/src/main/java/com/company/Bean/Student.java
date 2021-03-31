@@ -7,8 +7,9 @@ import com.company.StudentMainView;
 import com.company.impl.StudentImpl;
 
 import javax.swing.*;
+import java.util.List;
 
-public class Student implements Person {
+public class Student implements Person,Iterator {
 
     public void accept(Visitor v) {
         v.visit(this);
@@ -19,11 +20,32 @@ public class Student implements Person {
         studentLogin();
     }
 
+    @Override
+    public boolean hasNext() {
+        if (position >= itemList.size()){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public Object next() {
+        return itemList.get(position++);
+    }
+
     private int ID;
     private String studentAccount;
     private String password;
     private String studentName;
     private String studentSex;
+
+    private List<Student> itemList;
+    private int position;
+
+    public Student(List<Student> itemList) {
+        this.itemList = itemList;
+    }
 
     public Student(String studentAccount, String password, String studentName, String studentSex) {
         this.studentAccount = studentAccount;

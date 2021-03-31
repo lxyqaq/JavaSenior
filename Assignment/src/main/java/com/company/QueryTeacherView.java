@@ -20,8 +20,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import com.company.Bean.Iterator;
 import com.company.Bean.Student;
 import com.company.Bean.Teacher;
+import com.company.Bean.TeacherContainer;
 import com.company.Dao.TeacherDao;
 import com.company.impl.TeacherImpl;
 
@@ -228,7 +230,20 @@ public class QueryTeacherView extends JFrame {
         dm = (DefaultTableModel) table.getModel();
         dm.setRowCount(0);
         List<Teacher> teachers = teacherDao.QueryTeacher(teaname);
-        for (Teacher teacher : teachers) {
+        /*for (Teacher teacher : teachers) {
+            Vector<Object> v = new Vector<>();
+            v.add(teacher.getID());
+            v.add(teacher.getTeacherAccount());
+            v.add(teacher.getPassword());
+            v.add(teacher.getTeacherName());
+            v.add(teacher.getTeacherSex());
+            dm.addRow(v);
+        }*/
+        TeacherContainer teacherContainer = new TeacherContainer();
+        teacherContainer.list = teachers;
+        Iterator iterator = teacherContainer.getIterator();
+        while (iterator.hasNext()) {
+            Teacher teacher = (Teacher) iterator.next();
             Vector<Object> v = new Vector<>();
             v.add(teacher.getID());
             v.add(teacher.getTeacherAccount());

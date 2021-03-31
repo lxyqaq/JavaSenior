@@ -20,8 +20,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import com.company.Bean.Iterator;
 import com.company.Bean.Laboratory;
 import com.company.Bean.Student;
+import com.company.Bean.StudentContainer;
 import com.company.Dao.ReserveDao;
 import com.company.Dao.StudentDao;
 import com.company.impl.ReserveImpl;
@@ -228,7 +230,20 @@ public class QueryStudentView extends JFrame {
         dm = (DefaultTableModel) table.getModel();
         dm.setRowCount(0);
         List<Student> students = studentDao.QueryStudent(stuname);
-        for (Student student : students) {
+        /*for (Student student : students) {
+            Vector<Object> v = new Vector<>();
+            v.add(student.getID());
+            v.add(student.getStudentAccount());
+            v.add(student.getPassword());
+            v.add(student.getStudentName());
+            v.add(student.getStudentSex());
+            dm.addRow(v);
+        }*/
+        StudentContainer studentContainer = new StudentContainer();
+        studentContainer.list = students;
+        Iterator iterator = studentContainer.getIterator();
+        while (iterator.hasNext()) {
+            Student student = (Student) iterator.next();
             Vector<Object> v = new Vector<>();
             v.add(student.getID());
             v.add(student.getStudentAccount());
