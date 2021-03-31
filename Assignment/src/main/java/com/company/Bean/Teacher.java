@@ -1,9 +1,16 @@
 package com.company.Bean;
 
+import com.company.Main;
+
 public class Teacher implements Person {
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public boolean accept(Visitor v) {
+        return v.visit(this);
+    }
+
+    @Override
+    public boolean getType() {
+        return Main.comboBox.getSelectedItem().equals("Teacher");
     }
 
     private int ID;
@@ -13,6 +20,7 @@ public class Teacher implements Person {
     private String TeacherSex;
 
     public Teacher() {
+
     }
 
     public Teacher(String teacherAccount, String password, String teacherName, String teacherSex) {

@@ -1,17 +1,23 @@
 package com.company.Bean;
 
+import com.company.Main;
 
 public class User implements Person {
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public boolean accept(Visitor v) {
+        return v.visit(this);
     }
 
      private int ID;
      private String account;
      private String password;
 
-    public User( String account, String password) {
+    @Override
+    public boolean getType() {
+        return Main.comboBox.getSelectedItem().equals("Admin");
+    }
+
+    public User(String account, String password) {
 
         this.account = account;
         this.password = password;

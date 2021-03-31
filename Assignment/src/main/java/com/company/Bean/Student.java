@@ -1,9 +1,11 @@
 package com.company.Bean;
 
+import com.company.Main;
+
 public class Student implements Person {
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public boolean accept(Visitor v) {
+        return v.visit(this);
     }
 
     private int ID;
@@ -40,6 +42,12 @@ public class Student implements Person {
     }
 
     public Student() {
+
+    }
+
+    @Override
+    public boolean getType() {
+        return Main.comboBox.getSelectedItem().equals("Student");
     }
 
     public int getID() {

@@ -1,9 +1,7 @@
 package com.company;
 
 import com.alee.laf.WebLookAndFeel;
-import com.company.Bean.Student;
-import com.company.Bean.Teacher;
-import com.company.Bean.User;
+import com.company.Bean.*;
 import com.company.DB.DB;
 import com.company.Dao.StudentDao;
 import com.company.impl.StudentImpl;
@@ -17,15 +15,21 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 
 public class Main extends JFrame {
+
     private JPanel p;
     private JLabel lblName, lblPwd, lblRole;
     private JTextField txtName;
     private JPasswordField txtPwd;
     private JButton btnOk, btnCancle;
     String[] s = {"学生", "教师", "管理员"};
-    private JComboBox comboBox;
+    public static JComboBox comboBox;
     private StudentDao studentDao = new StudentImpl();
     private JLabel label;
+
+    private Visitor visitor = new MyVisitor();
+    private Person student = new Student();
+    private Person teacher = new Teacher();
+    private Person user = new User();
 
     public Main() {
         super("用户登录界面");
@@ -36,7 +40,7 @@ public class Main extends JFrame {
         lblRole.setFont(new Font("微软雅黑", Font.PLAIN, 12));
         comboBox = new JComboBox(s);
         comboBox.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        comboBox.setModel(new DefaultComboBoxModel(new String[]{"学生", "教师", "管理员"}));
+        comboBox.setModel(new DefaultComboBoxModel(new String[]{"Student", "Teacher", "Admin"}));
         lblName = new JLabel("账户：");
         lblName.setFont(new Font("微软雅黑", Font.PLAIN, 12));
         lblPwd = new JLabel("密码：");
@@ -51,9 +55,6 @@ public class Main extends JFrame {
         btnOk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String strName = txtName.getText();
-                String strPwd = new String(txtPwd.getPassword());
-                System.out.println("用户名:" + strName + "\n密码:" + strPwd);
 
             }
         });
@@ -101,15 +102,15 @@ public class Main extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String account = txtName.getText().trim();
                 String password = txtPwd.getText().trim();
-                String role = null;
-                if (comboBox.getSelectedItem().equals("管理员")) {
-                    role = "admin";
-                } else if (comboBox.getSelectedItem().equals("学生")) {
-                    role = "student";
-                } else {
-                    role = "teacher";
-                }
-                if (role.equals("admin")) {
+//                String role = null;
+//                if (comboBox.getSelectedItem().equals("管理员")) {
+//                    role = "admin";
+//                } else if (comboBox.getSelectedItem().equals("学生")) {
+//                    role = "student";
+//                } else {
+//                    role = "teacher";
+//                }
+                if (user.accept(visitor)) {
                     User user = new User(account, password);
                     if (DB.Login(user)) {
                         JOptionPane.showMessageDialog(null, "登录成功", "", JOptionPane.PLAIN_MESSAGE);
@@ -119,7 +120,7 @@ public class Main extends JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "账号密码错误", "", JOptionPane.PLAIN_MESSAGE);
                     }
-                } else if (role.equals("student")) {
+                } else if (student.accept(visitor)) {
                     Student student = new Student(account, password);
                     if (DB.studentLogin(student)) {
                         //查询学生信息
@@ -131,7 +132,7 @@ public class Main extends JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "账号密码错误", "", JOptionPane.PLAIN_MESSAGE);
                     }
-                } else if (role.equals("teacher")) {
+                } else if (teacher.accept(visitor)) {
                     Teacher teacher = new Teacher(account, password);
                     if (DB.teacherLogin(teacher)) {
                         TeacherMainView teacherMain = new TeacherMainView();

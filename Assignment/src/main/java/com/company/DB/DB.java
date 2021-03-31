@@ -48,7 +48,6 @@ public class DB {
             pre.setString(2, user.getPassword());
             ResultSet set = pre.executeQuery();
             if (set.next()) {
-                System.out.println(set.getString("account"));
                 login = true;
             } else {
                 login = false;

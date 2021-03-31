@@ -10,12 +10,6 @@ package com.company.Bean;
 public interface Visitor {
 
     //student
-    void visit(Student student);
-
-    //teacher
-    void visit(Teacher teacher);
-
-    //user
-    void visit(User user);
+    boolean visit(Person person);
 
 }
