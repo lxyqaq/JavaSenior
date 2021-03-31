@@ -20,7 +20,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import com.company.Bean.Iterator;
 import com.company.Bean.Laboratory;
+import com.company.Bean.LaboratoryContainer;
 import com.company.Bean.Student;
 import com.company.Dao.LaboratoryDao;
 import com.company.Dao.ReserveDao;
@@ -241,7 +243,20 @@ public class QueryLaboratoryView extends JFrame {
         dm = (DefaultTableModel) table.getModel();
         dm.setRowCount(0);
         List<Laboratory> laboratorys = laboratoryDao.QueryLaboratory(labname);
-        for (Laboratory lab : laboratorys) {
+        /*for (Laboratory lab : laboratorys) {
+            Vector<Object> v = new Vector<>();
+            v.add(lab.getID());
+            v.add(lab.getLaboratoryName());
+            v.add(lab.getFreeTime());
+            v.add(lab.getFunction());
+            v.add(lab.getStates());
+            dm.addRow(v);
+        }*/
+        LaboratoryContainer laboratoryContainer = new LaboratoryContainer();
+        laboratoryContainer.list = laboratorys;
+        Iterator iterator = laboratoryContainer.getIterator();
+        while (iterator.hasNext()) {
+            Laboratory lab = (Laboratory) iterator.next();
             Vector<Object> v = new Vector<>();
             v.add(lab.getID());
             v.add(lab.getLaboratoryName());

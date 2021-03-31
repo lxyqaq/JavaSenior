@@ -1,12 +1,36 @@
 package com.company.Bean;
 
-public class Laboratory {
+import java.util.List;
+import java.util.Vector;
+
+public class Laboratory implements Iterator {
 
     private int ID;
     private String laboratoryName;
     private String freeTime;
     private String function;
     private String states;
+
+    private List<Laboratory> itemList;
+    private int position;
+
+    @Override
+    public boolean hasNext() {
+        if (position >= itemList.size()){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public Object next() {
+        return itemList.get(position++);
+    }
+
+    public Laboratory(List<Laboratory> itemList) {
+        this.itemList = itemList;
+    }
 
     public Laboratory(String laboratoryName, String freeTime, String function) {
         this.laboratoryName = laboratoryName;
@@ -23,6 +47,7 @@ public class Laboratory {
     }
 
     public Laboratory() {
+
     }
 
     public String getStates() {

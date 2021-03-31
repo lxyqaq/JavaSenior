@@ -1,12 +1,35 @@
 package com.company.Bean;
 
-public class Reserve {
+import java.util.List;
+
+public class Reserve implements Iterator {
 
     private int ID;
     private String laboratoryName;
     private String StudentName;
     private String States;
     private String result;
+
+    private List<Reserve> itemList;
+    private int position;
+
+    @Override
+    public boolean hasNext() {
+        if (position >= itemList.size()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public Object next() {
+        return itemList.get(position++);
+    }
+
+    public Reserve(List<Reserve> list) {
+        this.itemList = list;
+    }
 
     public Reserve(int ID, String laboratoryName, String studentName, String states, String result) {
         this.ID = ID;
@@ -60,4 +83,5 @@ public class Reserve {
     public void setResult(String result) {
         this.result = result;
     }
+
 }

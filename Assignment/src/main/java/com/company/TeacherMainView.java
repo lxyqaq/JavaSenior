@@ -10,8 +10,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import com.company.Bean.Iterator;
 import com.company.Bean.Laboratory;
 import com.company.Bean.Reserve;
+import com.company.Bean.ReserveContainer;
 import com.company.Dao.LaboratoryDao;
 import com.company.Dao.ReserveDao;
 import com.company.impl.LaboratoryImpl;
@@ -216,7 +218,20 @@ public class TeacherMainView extends JFrame {
         dm = (DefaultTableModel) table.getModel();
         dm.setRowCount(0);
         List<Reserve> reserves = reserveDao.QueryReserve(labName);
-        for (Reserve reserve : reserves) {
+        /*for (Reserve reserve : reserves) {
+            Vector<Object> v = new Vector<>();
+            v.add(reserve.getID());
+            v.add(reserve.getLaboratoryName());
+            v.add(reserve.getStudentName());
+            v.add(reserve.getStates());
+            v.add(reserve.getResult());
+            dm.addRow(v);
+        }*/
+        ReserveContainer reserveContainer = new ReserveContainer();
+        reserveContainer.list = reserves;
+        Iterator iterator = reserveContainer.getIterator();
+        while (iterator.hasNext()) {
+            Reserve reserve = (Reserve) iterator.next();
             Vector<Object> v = new Vector<>();
             v.add(reserve.getID());
             v.add(reserve.getLaboratoryName());
