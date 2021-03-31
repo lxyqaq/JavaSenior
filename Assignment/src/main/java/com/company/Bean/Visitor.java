@@ -9,7 +9,6 @@ package com.company.Bean;
  */
 public interface Visitor {
 
-    //student
-    boolean visit(Person person);
+    void visit(Person person);
 
 }

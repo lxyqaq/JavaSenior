@@ -1,17 +1,17 @@
 package com.company.Bean;
 
 /**
- * @ClassName MyVisitor
+ * @ClassName StudentVisitor
  * @Description TODO
  * @Author lxyqaq @Email A00279565@student.ait.ie
- * @Date 2021/3/31 15:50
+ * @Date 2021/3/31 17:38
  * @Version 1.0
  */
 public class MyVisitor implements Visitor {
 
     @Override
-    public boolean visit(Person person) {
-        return person.getType();
+    public void visit(Person person) {
+        person.login();
     }
 
 }

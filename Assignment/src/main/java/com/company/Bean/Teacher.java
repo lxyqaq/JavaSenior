@@ -1,16 +1,20 @@
 package com.company.Bean;
 
+import com.company.DB.DB;
 import com.company.Main;
+import com.company.TeacherMainView;
+
+import javax.swing.*;
 
 public class Teacher implements Person {
 
-    public boolean accept(Visitor v) {
-        return v.visit(this);
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 
     @Override
-    public boolean getType() {
-        return Main.comboBox.getSelectedItem().equals("Teacher");
+    public void login() {
+        teacherLogin();
     }
 
     private int ID;
@@ -90,5 +94,20 @@ public class Teacher implements Person {
 
     public void setTeacherSex(String teacherSex) {
         TeacherSex = teacherSex;
+    }
+
+    public void teacherLogin() {
+        if (Main.comboBox.getSelectedItem().equals("Teacher")) {
+            String account = Main.txtName.getText().trim();
+            String password = Main.txtPwd.getText().trim();
+            Teacher teacher = new Teacher(account, password);
+            if (DB.teacherLogin(teacher)) {
+                TeacherMainView teacherMain = new TeacherMainView();
+                teacherMain.setVisible(true);
+                JOptionPane.showMessageDialog(null, "登录成功", "", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "账号密码错误", "", JOptionPane.PLAIN_MESSAGE);
+            }
+        }
     }
 }

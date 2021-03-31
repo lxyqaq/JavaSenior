@@ -1,11 +1,22 @@
 package com.company.Bean;
 
+import com.company.DB.DB;
+import com.company.Dao.StudentDao;
 import com.company.Main;
+import com.company.StudentMainView;
+import com.company.impl.StudentImpl;
+
+import javax.swing.*;
 
 public class Student implements Person {
 
-    public boolean accept(Visitor v) {
-        return v.visit(this);
+    public void accept(Visitor v) {
+        v.visit(this);
+    }
+
+    @Override
+    public void login() {
+        studentLogin();
     }
 
     private int ID;
@@ -43,11 +54,6 @@ public class Student implements Person {
 
     public Student() {
 
-    }
-
-    @Override
-    public boolean getType() {
-        return Main.comboBox.getSelectedItem().equals("Student");
     }
 
     public int getID() {
@@ -89,4 +95,22 @@ public class Student implements Person {
     public void setStudentSex(String studentSex) {
         this.studentSex = studentSex;
     }
+
+    public void studentLogin() {
+        if (Main.comboBox.getSelectedItem().equals("Student")) {
+            String account = Main.txtName.getText().trim();
+            String password = Main.txtPwd.getText().trim();
+            Student student = new Student(account, password);
+            if (DB.studentLogin(student)) {
+                StudentDao studentDao = new StudentImpl();
+                student = studentDao.selectStudent(student.getStudentAccount());
+                StudentMainView studentMain = new StudentMainView(student);
+                studentMain.setVisible(true);
+                JOptionPane.showMessageDialog(null, "登录成功", "", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "账号密码错误", "", JOptionPane.PLAIN_MESSAGE);
+            }
+        }
+    }
+
 }

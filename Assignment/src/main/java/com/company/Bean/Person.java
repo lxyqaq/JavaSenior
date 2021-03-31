@@ -9,8 +9,8 @@ package com.company.Bean;
  */
 public interface Person {
 
-    boolean accept(Visitor v);
+    void accept(Visitor v);
 
-    boolean getType();
+    void login();
 
 }

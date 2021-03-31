@@ -13,23 +13,26 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends JFrame {
 
     private JPanel p;
     private JLabel lblName, lblPwd, lblRole;
-    private JTextField txtName;
-    private JPasswordField txtPwd;
     private JButton btnOk, btnCancle;
-    String[] s = {"学生", "教师", "管理员"};
-    public static JComboBox comboBox;
+    private String[] s = {"Student", "Teacher", "Admin"};
     private StudentDao studentDao = new StudentImpl();
     private JLabel label;
+    public static JTextField txtName;
+    public static JPasswordField txtPwd;
+    public static JComboBox comboBox;
 
-    private Visitor visitor = new MyVisitor();
     private Person student = new Student();
     private Person teacher = new Teacher();
     private Person user = new User();
+
+    private List<Person> personList = new ArrayList<>();
 
     public Main() {
         super("用户登录界面");
@@ -51,24 +54,7 @@ public class Main extends JFrame {
         btnOk.setFont(new Font("微软雅黑", Font.PLAIN, 12));
         btnCancle = new JButton("取消");
         btnCancle.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        //注册确定按钮的事件处理
-        btnOk.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
-        //注册取消按钮的事件处理
-        btnCancle.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //清空
-                txtName.setText("");
-                txtPwd.setText("");
-
-            }
-        });
         lblRole.setBounds(90, 86, 60, 25);
         comboBox.setBounds(130, 86, 140, 25);
         lblName.setBounds(90, 121, 60, 25);
@@ -94,67 +80,29 @@ public class Main extends JFrame {
         p.add(label);
         this.setSize(400, 300);
         this.setLocation(300, 300);
-        //设置窗体不可改变大小
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         btnOk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String account = txtName.getText().trim();
-                String password = txtPwd.getText().trim();
-//                String role = null;
-//                if (comboBox.getSelectedItem().equals("管理员")) {
-//                    role = "admin";
-//                } else if (comboBox.getSelectedItem().equals("学生")) {
-//                    role = "student";
-//                } else {
-//                    role = "teacher";
-//                }
-                if (user.accept(visitor)) {
-                    User user = new User(account, password);
-                    if (DB.Login(user)) {
-                        JOptionPane.showMessageDialog(null, "登录成功", "", JOptionPane.PLAIN_MESSAGE);
-                        AdminMainView adminMain = new AdminMainView();
-                        adminMain.setVisible(true);
-                        Main.this.setVisible(false);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "账号密码错误", "", JOptionPane.PLAIN_MESSAGE);
-                    }
-                } else if (student.accept(visitor)) {
-                    Student student = new Student(account, password);
-                    if (DB.studentLogin(student)) {
-                        //查询学生信息
-                        student = studentDao.selectStudent(student.getStudentAccount());
-                        StudentMainView studentMain = new StudentMainView(student);
-                        studentMain.setVisible(true);
-                        Main.this.setVisible(false);
-                        JOptionPane.showMessageDialog(null, "登录成功", "", JOptionPane.PLAIN_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "账号密码错误", "", JOptionPane.PLAIN_MESSAGE);
-                    }
-                } else if (teacher.accept(visitor)) {
-                    Teacher teacher = new Teacher(account, password);
-                    if (DB.teacherLogin(teacher)) {
-                        TeacherMainView teacherMain = new TeacherMainView();
-                        teacherMain.setVisible(true);
-                        Main.this.setVisible(false);
-                        JOptionPane.showMessageDialog(null, "登录成功", "", JOptionPane.PLAIN_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "账号密码错误", "", JOptionPane.PLAIN_MESSAGE);
-                    }
-                }
+                Visitor visitor = new MyVisitor();
+                login(visitor);
+                Main.this.setVisible(false);
             }
         });
+
         btnCancle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                txtName.setText("");
+                txtPwd.setText("");
             }
         });
+
     }
 
     public static void main(String[] args) {
-        // write your code here
         Font font = new Font("微软雅黑", Font.PLAIN, 14);
         UIManager.put("Table.font", font);
         WebLookAndFeel.globalControlFont = new FontUIResource(font);
@@ -164,8 +112,24 @@ public class Main extends JFrame {
             Main main = new Main();
             main.setVisible(true);
         } catch (UnsupportedLookAndFeelException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
+
+    public void addPerson(Person person) {
+        personList.add(person);
+    }
+
+    public void login(Visitor visitor) {
+
+        personList.add(student);
+        personList.add(teacher);
+        personList.add(user);
+
+        for (Person person : personList) {
+            person.accept(visitor);
+        }
+
+    }
+
 }
