@@ -1,7 +1,7 @@
 package com.company.Bean;
 
 
-public class User implements Visitable {
+public class User implements Person {
 
     public void accept(Visitor v) {
         v.visit(this);

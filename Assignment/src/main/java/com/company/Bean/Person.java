@@ -7,7 +7,7 @@ package com.company.Bean;
  * @Date 2021/3/31 02:07
  * @Version 1.0
  */
-public interface Visitable {
+public interface Person {
 
     void accept(Visitor v);
 

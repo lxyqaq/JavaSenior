@@ -1,9 +1,6 @@
 package com.company.impl;
 
 import com.company.Bean.Student;
-import com.company.Bean.Teacher;
-import com.company.Bean.Visitable;
-import com.company.Bean.Visitor;
 import com.company.DB.DB;
 import com.company.Dao.StudentDao;
 

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class DB {
+
     public static String jdbcDriver;
     public static String jdbcUrl;
     public static String jdbcUser;
