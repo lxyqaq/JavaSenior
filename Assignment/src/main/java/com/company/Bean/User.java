@@ -1,7 +1,11 @@
 package com.company.Bean;
 
 
-public class User {
+public class User implements Visitable {
+
+    public void accept(Visitor v) {
+        v.visit(this);
+    }
 
      private int ID;
      private String account;

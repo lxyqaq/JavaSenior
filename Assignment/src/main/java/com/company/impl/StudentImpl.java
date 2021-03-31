@@ -2,6 +2,8 @@ package com.company.impl;
 
 import com.company.Bean.Student;
 import com.company.Bean.Teacher;
+import com.company.Bean.Visitable;
+import com.company.Bean.Visitor;
 import com.company.DB.DB;
 import com.company.Dao.StudentDao;
 
@@ -14,6 +16,7 @@ import java.util.List;
 
 public class StudentImpl implements StudentDao {
 
+    private Student student;
 
     @Override
     public int addStudent(Student student) {
@@ -50,7 +53,6 @@ public class StudentImpl implements StudentDao {
         StringBuffer sql = new StringBuffer("select  * from student");
         if (stuname != null && !"".equals(stuname)) {
             sql.append(" where StudentName like ?");
-
         }
         PreparedStatement pre = null;
         ResultSet i = null;
@@ -61,7 +63,7 @@ public class StudentImpl implements StudentDao {
             }
             i = pre.executeQuery();
             while (i.next()) {
-                Student student = new Student(Integer.valueOf(i.getString("ID")), i.getString("StudentAccount"), i.getString("password"), i.getString("StudentName"), i.getString("StudentSex"));
+                student = new Student(Integer.valueOf(i.getString("ID")), i.getString("StudentAccount"), i.getString("password"), i.getString("StudentName"), i.getString("StudentSex"));
                 students.add(student);
             }
         } catch (SQLException throwables) {

@@ -64,4 +64,5 @@ public class Laboratory {
     public void setFunction(String function) {
         this.function = function;
     }
+
 }

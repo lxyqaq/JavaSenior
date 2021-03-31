@@ -14,6 +14,7 @@ import java.util.List;
 public class LaboratoryImpl implements LaboratoryDao {
 
     public LaboratoryImpl() {
+
     }
 
     @Override

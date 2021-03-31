@@ -1,6 +1,10 @@
 package com.company.Bean;
 
-public class Student {
+public class Student implements Visitable {
+
+    public void accept(Visitor v) {
+        v.visit(this);
+    }
 
     private int ID;
     private String studentAccount;
