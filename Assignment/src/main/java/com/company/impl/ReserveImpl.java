@@ -79,7 +79,7 @@ public class ReserveImpl implements ReserveDao {
     @Override
     public int UpdateReserve(String ID, String result) {
         Connection connection = DB.connect();
-        String s = "已审批";
+        String s = "Approved";
         String sql = "update reserve set States='" + s + "',result=?  where ID=?";
         PreparedStatement pre = null;
         int i = 0;

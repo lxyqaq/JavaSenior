@@ -174,7 +174,7 @@ public class TeacherMainView extends JFrame {
                 if (ID == null) {
                     JOptionPane.showMessageDialog(null, "请选择行！");
                 } else {
-                    if (States.equals("待审批")) {
+                    if (States.equals("Wait")) {
                         while (table.getRowCount() > 0) {
                             dm.removeRow(0);
                         }

@@ -84,7 +84,7 @@ public class QueryLaboratoryView extends JFrame {
         label.setBounds(150, 22, 300, 35);
         contentPane.add(label);
 
-        JLabel label_1 = new JLabel("Laboratory name");
+        JLabel label_1 = new JLabel("Laboratory:");
         label_1.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         label_1.setBounds(121, 70, 110, 15);
         contentPane.add(label_1);
