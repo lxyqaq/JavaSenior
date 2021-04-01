@@ -51,7 +51,7 @@ public class AddLaboratoryView extends JFrame {
      * Create the frame.
      */
     public AddLaboratoryView() {
-        setTitle("添加实验室");
+        setTitle("Add Laboratory");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 370);
         contentPane = new JPanel();
@@ -59,74 +59,74 @@ public class AddLaboratoryView extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("实验室名称：");
-        lblNewLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel lblNewLabel = new JLabel("Laboratory: ");
+        lblNewLabel.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         lblNewLabel.setBounds(107, 103, 93, 15);
         contentPane.add(lblNewLabel);
 
-        JLabel lblNewLabel_1 = new JLabel("空闲时间：");
-        lblNewLabel_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        lblNewLabel_1.setBounds(118, 156, 71, 15);
+        JLabel lblNewLabel_1 = new JLabel("Time: ");
+        lblNewLabel_1.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        lblNewLabel_1.setBounds(107, 156, 71, 15);
         contentPane.add(lblNewLabel_1);
 
-        JLabel lblNewLabel_2 = new JLabel("实验室功能：");
-        lblNewLabel_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        lblNewLabel_2.setBounds(107, 206, 93, 15);
+        JLabel lblNewLabel_2 = new JLabel("Lab Functions：");
+        lblNewLabel_2.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        lblNewLabel_2.setBounds(107, 206, 98, 15);
         contentPane.add(lblNewLabel_2);
 
         labname = new JTextField();
-        labname.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        labname.setBounds(188, 100, 131, 21);
+        labname.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        labname.setBounds(195, 100, 131, 21);
         contentPane.add(labname);
         labname.setColumns(10);
 
         function = new JTextField();
-        function.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        function.setBounds(188, 203, 131, 21);
+        function.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        function.setBounds(195, 203, 131, 21);
         contentPane.add(function);
         function.setColumns(10);
 
-        JButton btnNewButton = new JButton("添加");
-        btnNewButton.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JButton btnNewButton = new JButton("ADD");
+        btnNewButton.setFont(new Font("TimesRoman", Font.PLAIN, 12));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 String labnameText = labname.getText().trim();
                 String freeTimeText = freeTime.getText().trim();
                 String functionText = function.getText().trim();
                 if (labnameText == null || "".equals(labnameText)) {
-                    JOptionPane.showMessageDialog(null, "请输入实验室名称！");
+                    JOptionPane.showMessageDialog(null, "Please enter the laboratory!");
                     return;
                 }
                 if (freeTimeText == null || "".equals(freeTimeText)) {
-                    JOptionPane.showMessageDialog(null, "请输入空闲时间！");
+                    JOptionPane.showMessageDialog(null, "Please enter the time!");
                     return;
                 }
                 if (functionText == null || "".equals(functionText)) {
-                    JOptionPane.showMessageDialog(null, "请输入实验室功能！");
+                    JOptionPane.showMessageDialog(null, "Please enter the lab functions!");
                     return;
                 }
                 Laboratory laboratory = new Laboratory(labnameText, freeTimeText, functionText);
                 int i = laboratoryDao.addLaboratoryDao(laboratory);
                 if (i == 1) {
                     dispose();
-                    JOptionPane.showMessageDialog(null, "添加成功");
+                    JOptionPane.showMessageDialog(null, "Success");
                 } else {
-                    JOptionPane.showMessageDialog(null, "添加失败");
+                    JOptionPane.showMessageDialog(null, "Fail");
                 }
             }
         });
-        btnNewButton.setBounds(188, 252, 93, 23);
+
+        btnNewButton.setBounds(195, 252, 93, 23);
         contentPane.add(btnNewButton);
 
         freeTime = new JTextField();
-        freeTime.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        freeTime.setBounds(188, 153, 131, 21);
+        freeTime.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        freeTime.setBounds(195, 153, 131, 21);
         contentPane.add(freeTime);
         freeTime.setColumns(10);
 
-        JLabel label = new JLabel("添加实验室");
-        label.setFont(new Font("方正舒体", Font.PLAIN, 20));
+        JLabel label = new JLabel("Add Laboratory");
+        label.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setBounds(146, 30, 151, 32);
         contentPane.add(label);
