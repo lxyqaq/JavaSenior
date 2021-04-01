@@ -35,34 +35,34 @@ public class Main extends JFrame {
     private List<Person> personList = new ArrayList<>();
 
     public Main() {
-        super("用户登录界面");
+        super("Login system");
         p = new JPanel();
         p.setBackground(Color.PINK);
         p.setLayout(null);
-        lblRole = new JLabel("角色：");
-        lblRole.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        lblRole = new JLabel("Role: ");
+        lblRole.setFont(new Font("TimesRoman", Font.PLAIN, 12));
         comboBox = new JComboBox(s);
-        comboBox.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        comboBox.setFont(new Font("TimesRoman", Font.PLAIN, 12));
         comboBox.setModel(new DefaultComboBoxModel(new String[]{"Student", "Teacher", "Admin"}));
-        lblName = new JLabel("账户：");
-        lblName.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        lblPwd = new JLabel("密码：");
-        lblPwd.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        lblName = new JLabel("Username: ");
+        lblName.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        lblPwd = new JLabel("Password: ");
+        lblPwd.setFont(new Font("TimesRoman", Font.PLAIN, 12));
         txtName = new JTextField(20);
         txtPwd = new JPasswordField(20);
-        btnOk = new JButton("登录");
-        btnOk.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        btnCancle = new JButton("取消");
-        btnCancle.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        btnOk = new JButton("Login");
+        btnOk.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        btnCancle = new JButton("Cancel");
+        btnCancle.setFont(new Font("TimesRoman", Font.PLAIN, 12));
 
         lblRole.setBounds(90, 86, 60, 25);
-        comboBox.setBounds(130, 86, 140, 25);
+        comboBox.setBounds(150, 86, 140, 25);
         lblName.setBounds(90, 121, 60, 25);
-        txtName.setBounds(130, 121, 140, 25);
+        txtName.setBounds(150, 121, 140, 25);
         lblPwd.setBounds(90, 156, 60, 25);
-        txtPwd.setBounds(130, 156, 140, 25);
-        btnOk.setBounds(130, 191, 60, 25);
-        btnCancle.setBounds(210, 191, 60, 25);
+        txtPwd.setBounds(150, 156, 140, 25);
+        btnOk.setBounds(150, 191, 60, 25);
+        btnCancle.setBounds(230, 191, 60, 25);
         p.add(lblRole);
         p.add(comboBox);
         p.add(lblName);
@@ -73,10 +73,10 @@ public class Main extends JFrame {
         p.add(btnCancle);
         getContentPane().add(p);
 
-        label = new JLabel("实验室预约管理");
-        label.setFont(new Font("方正舒体", Font.PLAIN, 20));
+        label = new JLabel("Laboratory Appointment Management System");
+        label.setFont(new Font("TimesRoman", Font.PLAIN, 16));
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setBounds(114, 28, 154, 25);
+        label.setBounds(11, 28, 380, 25);
         p.add(label);
         this.setSize(400, 300);
         this.setLocation(300, 300);
@@ -119,7 +119,7 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
-        Font font = new Font("微软雅黑", Font.PLAIN, 14);
+        Font font = new Font("TimesRoman", Font.PLAIN, 14);
         UIManager.put("Table.font", font);
         WebLookAndFeel.globalControlFont = new FontUIResource(font);
         WebLookAndFeel.install();
@@ -131,6 +131,5 @@ public class Main extends JFrame {
             e.printStackTrace();
         }
     }
-
 
 }
