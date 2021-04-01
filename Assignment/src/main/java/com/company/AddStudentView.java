@@ -102,28 +102,28 @@ public class AddStudentView extends JFrame {
                 String studentName = nameText.getText().trim();
                 String studentSex = sex.getSelectedItem().toString();
                 if (studentAccount == null || "".equals(studentAccount)) {
-                    JOptionPane.showMessageDialog(null, "请输入学生账号！");
+                    JOptionPane.showMessageDialog(null, "Please enter the student ID!");
                     return;
                 }
                 if (studentPassword == null || "".equals(studentPassword)) {
-                    JOptionPane.showMessageDialog(null, "请输入密码！");
+                    JOptionPane.showMessageDialog(null, "Please enter the student password!");
                     return;
                 }
                 if (studentName == null || "".equals(studentName)) {
-                    JOptionPane.showMessageDialog(null, "请输入学生姓名！");
+                    JOptionPane.showMessageDialog(null, "Please enter the student name!");
                     return;
                 }
                 if (studentSex == null || "".equals(studentSex)) {
-                    JOptionPane.showMessageDialog(null, "请选择性别！");
+                    JOptionPane.showMessageDialog(null, "Please select gender!");
                     return;
                 }
                 Student student = new Student(studentAccount, studentPassword, studentName, studentSex);
                 int i = studentDao.addStudent(student);
                 if (i == 1) {
                     dispose();
-                    JOptionPane.showMessageDialog(null, "添加成功");
+                    JOptionPane.showMessageDialog(null, "Success");
                 } else {
-                    JOptionPane.showMessageDialog(null, "添加失败");
+                    JOptionPane.showMessageDialog(null, "Fail");
                 }
             }
         });
