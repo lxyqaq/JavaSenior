@@ -172,7 +172,7 @@ public class TeacherMainView extends JFrame {
         audit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 if (ID == null) {
-                    JOptionPane.showMessageDialog(null, "请选择行！");
+                    JOptionPane.showMessageDialog(null, "Please select the line!");
                 } else {
                     if (States.equals("Wait")) {
                         while (table.getRowCount() > 0) {
@@ -183,11 +183,11 @@ public class TeacherMainView extends JFrame {
                         }
                         int i = reserveDao.UpdateReserve(ID, statusComBox.getSelectedItem().toString());
                         if (i == 1) {
-                            JOptionPane.showMessageDialog(null, "审批成功");
+                            JOptionPane.showMessageDialog(null, "Success!");
                             fillTable(null);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "这条信息已经审批不能更改！");
+                        JOptionPane.showMessageDialog(null, "This message has been approved and cannot be changed!");
                     }
                 }
             }

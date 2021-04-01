@@ -59,11 +59,11 @@ public class User implements Person {
             String password = Main.txtPwd.getText().trim();
             User user = new User(account, password);
             if (DB.Login(user)) {
-                JOptionPane.showMessageDialog(null, "登录成功", "", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Success!", "", JOptionPane.PLAIN_MESSAGE);
                 AdminMainView adminMain = new AdminMainView();
                 adminMain.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(null, "账号密码错误", "", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Fail!", "", JOptionPane.PLAIN_MESSAGE);
             }
         }
     }

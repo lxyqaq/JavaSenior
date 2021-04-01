@@ -126,9 +126,9 @@ public class Teacher implements Person, Iterator {
             if (DB.teacherLogin(teacher)) {
                 TeacherMainView teacherMain = new TeacherMainView();
                 teacherMain.setVisible(true);
-                JOptionPane.showMessageDialog(null, "登录成功", "", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Success!", "", JOptionPane.PLAIN_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "账号密码错误", "", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Fail!", "", JOptionPane.PLAIN_MESSAGE);
             }
         }
     }

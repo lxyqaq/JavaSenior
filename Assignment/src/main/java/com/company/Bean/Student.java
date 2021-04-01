@@ -128,9 +128,9 @@ public class Student implements Person,Iterator {
                 student = studentDao.selectStudent(student.getStudentAccount());
                 StudentMainView studentMain = new StudentMainView(student);
                 studentMain.setVisible(true);
-                JOptionPane.showMessageDialog(null, "登录成功", "", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Success!", "", JOptionPane.PLAIN_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "账号密码错误", "", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Fail!", "", JOptionPane.PLAIN_MESSAGE);
             }
         }
     }
