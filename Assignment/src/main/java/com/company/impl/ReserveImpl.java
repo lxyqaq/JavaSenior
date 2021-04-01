@@ -1,9 +1,8 @@
 package com.company.impl;
 
-import com.company.Bean.Reserve;
-import com.company.Bean.Teacher;
-import com.company.DB.DB;
-import com.company.Dao.ReserveDao;
+import com.company.pojo.Reserve;
+import com.company.dbutils.DB;
+import com.company.dao.ReserveDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

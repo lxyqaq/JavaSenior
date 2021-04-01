@@ -1,9 +1,8 @@
 package com.company.impl;
 
-import com.company.Bean.Laboratory;
-import com.company.Bean.Teacher;
-import com.company.DB.DB;
-import com.company.Dao.TeacherDao;
+import com.company.pojo.Teacher;
+import com.company.dbutils.DB;
+import com.company.dao.TeacherDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

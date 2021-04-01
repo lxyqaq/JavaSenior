@@ -1,9 +1,8 @@
 package com.company;
 
 import com.alee.laf.WebLookAndFeel;
-import com.company.Bean.*;
-import com.company.DB.DB;
-import com.company.Dao.StudentDao;
+import com.company.pojo.*;
+import com.company.dao.StudentDao;
 import com.company.impl.StudentImpl;
 
 import javax.swing.*;
