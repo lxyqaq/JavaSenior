@@ -47,7 +47,6 @@ public class QueryStudentView extends JFrame {
     private DefaultTableModel dm;
     private StudentDao studentDao = new StudentImpl();
     private ReserveDao reserveDao = new ReserveImpl();
-    //选中行的值
     private String id, studentAccount, studentName, studentSex;
 
     /**
@@ -70,7 +69,7 @@ public class QueryStudentView extends JFrame {
      * Create the frame.
      */
     public QueryStudentView() {
-        setTitle("查询学生信息");
+        setTitle("Student Information");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 600, 400);
         contentPane = new JPanel();
@@ -78,30 +77,30 @@ public class QueryStudentView extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel label = new JLabel("查询学生信息");
-        label.setFont(new Font("方正舒体", Font.PLAIN, 20));
+        JLabel label = new JLabel("Student Information");
+        label.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setBounds(216, 22, 165, 35);
         contentPane.add(label);
 
-        JLabel label_1 = new JLabel("学生姓名：");
-        label_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel label_1 = new JLabel("Name: ");
+        label_1.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         label_1.setBounds(134, 70, 77, 15);
         contentPane.add(label_1);
 
         keyword = new JTextField();
-        keyword.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        keyword.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         keyword.setBounds(216, 67, 155, 21);
         contentPane.add(keyword);
         keyword.setColumns(10);
 
-        JButton search = new JButton("查询");
+        JButton search = new JButton("Search");
         search.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fillTable(keyword.getText());
             }
         });
-        search.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        search.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         search.setBounds(392, 66, 93, 23);
         contentPane.add(search);
 
@@ -114,7 +113,6 @@ public class QueryStudentView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent arg0) {
                 int row = table.getSelectedRow();
-                // 获取点击行的内容
                 id = dm.getValueAt(row, 0).toString();
                 studentAccount = (String) dm.getValueAt(row, 1);
                 studentName = (String) dm.getValueAt(row, 3);
@@ -124,121 +122,107 @@ public class QueryStudentView extends JFrame {
                 sex.setSelectedItem(studentSex);
             }
         });
-        table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID", "账号", "密码", "姓名", "性别"}) {
+        table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID", "Username", "Password", "Name", "Gender"}) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         });
         fillTable(null);
         DefaultTableCellRenderer r = new DefaultTableCellRenderer();
-        //设置字体颜色粉红
         r.setBackground(Color.pink);
-        //设置单元格数据居中显示
         r.setHorizontalAlignment(JLabel.CENTER);
         table.setDefaultRenderer(Object.class, r);
         scrollPane.setViewportView(table);
 
-        JLabel label_2 = new JLabel("学生账号：");
-        label_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel label_2 = new JLabel("Username: ");
+        label_2.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         label_2.setBounds(20, 254, 77, 15);
         contentPane.add(label_2);
 
         account = new JTextField();
         account.setEditable(false);
-        account.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        account.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         account.setBounds(92, 251, 85, 21);
         contentPane.add(account);
         account.setColumns(10);
 
-        JLabel lblNewLabel = new JLabel("学生姓名：");
-        lblNewLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        lblNewLabel.setBounds(209, 252, 76, 15);
+        JLabel lblNewLabel = new JLabel("Name: ");
+        lblNewLabel.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        lblNewLabel.setBounds(209, 254, 76, 15);
         contentPane.add(lblNewLabel);
 
         stuname = new JTextField();
-        stuname.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        stuname.setBounds(280, 251, 85, 21);
+        stuname.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        stuname.setBounds(275, 251, 85, 21);
         contentPane.add(stuname);
         stuname.setColumns(10);
 
-        JLabel lblNewLabel_1 = new JLabel("学生性别：");
-        lblNewLabel_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel lblNewLabel_1 = new JLabel("Gender: ");
+        lblNewLabel_1.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         lblNewLabel_1.setBounds(398, 253, 82, 15);
         contentPane.add(lblNewLabel_1);
 
-        JButton update = new JButton("修改");
+        sex = new JComboBox();
+        sex.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        sex.setModel(new DefaultComboBoxModel(new String[]{"Male", "Female"}));
+        sex.setBounds(467, 251, 92, 24);
+        contentPane.add(sex);
+
+        JButton update = new JButton("Update");
         update.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-
                 studentAccount = account.getText();
                 studentName = stuname.getText();
                 studentSex = sex.getSelectedItem().toString();
-
                 if (studentAccount == null || "".equals(studentAccount)) {
-                    JOptionPane.showMessageDialog(null, "请选择行！");
+                    JOptionPane.showMessageDialog(null, "Please select the line!");
                 } else {
-
                     Student stu = new Student(Integer.valueOf(id), studentAccount, studentName, studentSex);
                     int i = studentDao.UpdateStudent(stu);
                     if (i == 1) {
                         fillTable(null);
-                        JOptionPane.showMessageDialog(null, "修改成功");
+                        JOptionPane.showMessageDialog(null, "Success");
                     }
                 }
             }
         });
-        update.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        update.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         update.setBounds(98, 299, 93, 23);
         contentPane.add(update);
 
-        JButton delete = new JButton("删除");
+        JButton delete = new JButton("Delete");
         delete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (studentAccount == null || "".equals(studentAccount)) {
-                    JOptionPane.showMessageDialog(null, "请选择行！");
+                    JOptionPane.showMessageDialog(null, "Please select the line!");
                 } else {
                     int i = studentDao.DeleteStudent(id);
                     int k = reserveDao.DeleteReserveByStudent(studentName);
                     fillTable(null);
-                    JOptionPane.showMessageDialog(null, "删除成功");
+                    JOptionPane.showMessageDialog(null, "Success");
                 }
             }
         });
-        delete.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        delete.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         delete.setBounds(244, 299, 93, 23);
         contentPane.add(delete);
 
-        JButton back = new JButton("返回");
+        JButton back = new JButton("Previous");
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
-        back.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        back.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         back.setBounds(392, 299, 93, 23);
         contentPane.add(back);
 
-        sex = new JComboBox();
-        sex.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        sex.setModel(new DefaultComboBoxModel(new String[]{"男", "女"}));
-        sex.setBounds(467, 251, 82, 21);
-        contentPane.add(sex);
     }
-
 
     public void fillTable(String stuname) {
         dm = (DefaultTableModel) table.getModel();
         dm.setRowCount(0);
         List<Student> students = studentDao.QueryStudent(stuname);
-        /*for (Student student : students) {
-            Vector<Object> v = new Vector<>();
-            v.add(student.getID());
-            v.add(student.getStudentAccount());
-            v.add(student.getPassword());
-            v.add(student.getStudentName());
-            v.add(student.getStudentSex());
-            dm.addRow(v);
-        }*/
         StudentContainer studentContainer = new StudentContainer();
         studentContainer.list = students;
         Iterator iterator = studentContainer.getIterator();
@@ -253,4 +237,5 @@ public class QueryStudentView extends JFrame {
             dm.addRow(v);
         }
     }
+
 }
