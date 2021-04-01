@@ -208,6 +208,7 @@ public class TeacherMainView extends JFrame {
                 main.setVisible(true);
             }
         });
+
         back.setFont(new Font("微软雅黑", Font.PLAIN, 12));
         back.setBounds(396, 311, 93, 23);
         contentPane.add(back);

@@ -102,20 +102,6 @@ public class Main extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        Font font = new Font("微软雅黑", Font.PLAIN, 14);
-        UIManager.put("Table.font", font);
-        WebLookAndFeel.globalControlFont = new FontUIResource(font);
-        WebLookAndFeel.install();
-        try {
-            UIManager.setLookAndFeel(new WebLookAndFeel());
-            Main main = new Main();
-            main.setVisible(true);
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void addPerson(Person person) {
         personList.add(person);
     }
@@ -131,5 +117,20 @@ public class Main extends JFrame {
         }
 
     }
+
+    public static void main(String[] args) {
+        Font font = new Font("微软雅黑", Font.PLAIN, 14);
+        UIManager.put("Table.font", font);
+        WebLookAndFeel.globalControlFont = new FontUIResource(font);
+        WebLookAndFeel.install();
+        try {
+            UIManager.setLookAndFeel(new WebLookAndFeel());
+            Main main = new Main();
+            main.setVisible(true);
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
