@@ -75,19 +75,19 @@ public class AddLaboratoryView extends JFrame {
         contentPane.add(lblNewLabel_2);
 
         labname = new JTextField();
-        labname.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        labname.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         labname.setBounds(195, 100, 131, 21);
         contentPane.add(labname);
         labname.setColumns(10);
 
         function = new JTextField();
-        function.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        function.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         function.setBounds(195, 203, 131, 21);
         contentPane.add(function);
         function.setColumns(10);
 
         JButton btnNewButton = new JButton("ADD");
-        btnNewButton.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        btnNewButton.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String labnameText = labname.getText().trim();
@@ -120,7 +120,7 @@ public class AddLaboratoryView extends JFrame {
         contentPane.add(btnNewButton);
 
         freeTime = new JTextField();
-        freeTime.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        freeTime.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         freeTime.setBounds(195, 153, 131, 21);
         contentPane.add(freeTime);
         freeTime.setColumns(10);

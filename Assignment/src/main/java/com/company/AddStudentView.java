@@ -53,8 +53,7 @@ public class AddStudentView extends JFrame {
      * Create the frame.
      */
     public AddStudentView() {
-        setTitle("\u6DFB\u52A0\u5B66\u751F");
-        //隐藏当前窗口，并释放窗体占有的其他资源。在窗口被关闭的时候会dispose这个窗口。
+        setTitle("Add Student");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 370);
         contentPane = new JPanel();
@@ -62,40 +61,40 @@ public class AddStudentView extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("学生账号：");
-        lblNewLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel lblNewLabel = new JLabel("Username: ");
+        lblNewLabel.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         lblNewLabel.setBounds(107, 96, 71, 15);
         contentPane.add(lblNewLabel);
 
-        JLabel lblNewLabel_1 = new JLabel("学生密码：");
-        lblNewLabel_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel lblNewLabel_1 = new JLabel("Password: ");
+        lblNewLabel_1.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         lblNewLabel_1.setBounds(107, 143, 71, 15);
         contentPane.add(lblNewLabel_1);
 
-        JLabel lblNewLabel_2 = new JLabel("学生姓名：");
-        lblNewLabel_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel lblNewLabel_2 = new JLabel("Name: ");
+        lblNewLabel_2.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         lblNewLabel_2.setBounds(107, 191, 71, 15);
         contentPane.add(lblNewLabel_2);
 
-        JLabel lblNewLabel_3 = new JLabel("学生性别：");
-        lblNewLabel_3.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        lblNewLabel_3.setBounds(107, 234, 71, 15);
+        JLabel lblNewLabel_3 = new JLabel("Gender: ");
+        lblNewLabel_3.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        lblNewLabel_3.setBounds(107, 238, 71, 15);
         contentPane.add(lblNewLabel_3);
 
         accountText = new JTextField();
-        accountText.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        accountText.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         accountText.setBounds(177, 93, 131, 21);
         contentPane.add(accountText);
         accountText.setColumns(10);
 
         nameText = new JTextField();
-        nameText.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        nameText.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         nameText.setBounds(177, 188, 131, 21);
         contentPane.add(nameText);
         nameText.setColumns(10);
 
-        JButton btnNewButton = new JButton("添加");
-        btnNewButton.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JButton btnNewButton = new JButton("Add");
+        btnNewButton.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String studentAccount = accountText.getText().trim();
@@ -128,22 +127,23 @@ public class AddStudentView extends JFrame {
                 }
             }
         });
+
         btnNewButton.setBounds(177, 278, 93, 23);
         contentPane.add(btnNewButton);
 
         pwdText = new JPasswordField();
-        pwdText.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        pwdText.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         pwdText.setBounds(177, 140, 131, 21);
         contentPane.add(pwdText);
 
         sex = new JComboBox();
-        sex.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        sex.setModel(new DefaultComboBoxModel(new String[]{"男", "女"}));
-        sex.setBounds(177, 231, 131, 21);
+        sex.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        sex.setModel(new DefaultComboBoxModel(new String[]{"Male", "Female"}));
+        sex.setBounds(177, 231, 131, 30);
         contentPane.add(sex);
 
-        lblNewLabel_4 = new JLabel("添加学生");
-        lblNewLabel_4.setFont(new Font("方正舒体", Font.PLAIN, 20));
+        lblNewLabel_4 = new JLabel("Add Student");
+        lblNewLabel_4.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel_4.setBounds(124, 31, 184, 35);
         contentPane.add(lblNewLabel_4);
