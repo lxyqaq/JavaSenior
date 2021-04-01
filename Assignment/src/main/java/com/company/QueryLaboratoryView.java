@@ -50,7 +50,6 @@ public class QueryLaboratoryView extends JFrame {
     private ReserveDao reserveDao = new ReserveImpl();
     private String id, laboratoryNameText, freeTimeText, functionText, statesText;
 
-
     /**
      * Launch the application.
      */
@@ -71,7 +70,7 @@ public class QueryLaboratoryView extends JFrame {
      * Create the frame.
      */
     public QueryLaboratoryView() {
-        setTitle("查询实验室信息");
+        setTitle("Laboratory Information");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 600, 400);
         contentPane = new JPanel();
@@ -79,31 +78,31 @@ public class QueryLaboratoryView extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel label = new JLabel("查询实验室信息");
-        label.setFont(new Font("方正舒体", Font.PLAIN, 20));
+        JLabel label = new JLabel("Laboratory Information");
+        label.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setBounds(216, 22, 165, 35);
+        label.setBounds(150, 22, 300, 35);
         contentPane.add(label);
 
-        JLabel label_1 = new JLabel("实验室名称：");
-        label_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        label_1.setBounds(121, 70, 94, 15);
+        JLabel label_1 = new JLabel("Laboratory name");
+        label_1.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        label_1.setBounds(121, 70, 110, 15);
         contentPane.add(label_1);
 
         keyword = new JTextField();
-        keyword.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        keyword.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         keyword.setBounds(216, 67, 155, 21);
         contentPane.add(keyword);
         keyword.setColumns(10);
 
-        JButton search = new JButton("查询");
+        JButton search = new JButton("Search");
         search.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String text = keyword.getText();
                 fillTable(text);
             }
         });
-        search.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        search.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         search.setBounds(392, 66, 93, 23);
         contentPane.add(search);
 
@@ -116,7 +115,6 @@ public class QueryLaboratoryView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent arg0) {
                 int row = table.getSelectedRow();
-                // 获取点击行的内容
                 id = dm.getValueAt(row, 0).toString();
                 laboratoryNameText = (String) dm.getValueAt(row, 1);
                 freeTimeText = (String) dm.getValueAt(row, 2);
@@ -128,130 +126,119 @@ public class QueryLaboratoryView extends JFrame {
                 states.setSelectedItem(statesText);
             }
         });
-        table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID", "实验室名称", "空闲时间", "功能", "状态"}) {
+        table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID", "Laboratory", "Time", "Function", "State"}) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         });
         fillTable(null);
         DefaultTableCellRenderer r = new DefaultTableCellRenderer();
-        //设置字体颜色粉红
         r.setBackground(Color.pink);
-        //设置单元格数据居中显示
         r.setHorizontalAlignment(JLabel.CENTER);
         table.setDefaultRenderer(Object.class, r);
         scrollPane.setViewportView(table);
 
-        JLabel label_2 = new JLabel("实验室名：");
-        label_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel label_2 = new JLabel("Laboratory: ");
+        label_2.setFont(new Font("TimesRoman", Font.PLAIN, 13));
         label_2.setBounds(10, 254, 72, 15);
         contentPane.add(label_2);
 
         labname = new JTextField();
-        labname.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        labname.setFont(new Font("TimesRoman", Font.PLAIN, 13));
         labname.setBounds(71, 251, 82, 21);
         contentPane.add(labname);
         labname.setColumns(10);
 
-        JLabel lblNewLabel = new JLabel("空闲时间：");
-        lblNewLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        lblNewLabel.setBounds(163, 254, 73, 15);
+        JLabel lblNewLabel = new JLabel("Time: ");
+        lblNewLabel.setFont(new Font("TimesRoman", Font.PLAIN, 13));
+        lblNewLabel.setBounds(161, 254, 73, 15);
         contentPane.add(lblNewLabel);
 
         freeTime = new JTextField();
-        freeTime.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        freeTime.setBounds(230, 251, 82, 21);
+        freeTime.setFont(new Font("TimesRoman", Font.PLAIN, 13));
+        freeTime.setBounds(195, 251, 82, 21);
         contentPane.add(freeTime);
         freeTime.setColumns(10);
 
-        JLabel lblNewLabel_1 = new JLabel("功能：");
-        lblNewLabel_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        lblNewLabel_1.setBounds(324, 254, 51, 15);
+        JLabel lblNewLabel_1 = new JLabel("Function: ");
+        lblNewLabel_1.setFont(new Font("TimesRoman", Font.PLAIN, 13));
+        lblNewLabel_1.setBounds(280, 254, 60, 15);
         contentPane.add(lblNewLabel_1);
 
-        JButton btnNewButton_1 = new JButton("修改");
+        function = new JTextField();
+        function.setFont(new Font("TimesRoman", Font.PLAIN, 13));
+        function.setBounds(335, 251, 83, 21);
+        contentPane.add(function);
+        function.setColumns(10);
+
+        JLabel lblNewLabel_2 = new JLabel("State: ");
+        lblNewLabel_2.setFont(new Font("TimesRoman", Font.PLAIN, 13));
+        lblNewLabel_2.setBounds(419, 254, 62, 15);
+        contentPane.add(lblNewLabel_2);
+
+        states = new JComboBox();
+        states.setFont(new Font("TimesRoman", Font.PLAIN, 13));
+        states.setModel(new DefaultComboBoxModel(new String[]{"Vacant", "Occupied"}));
+        states.setBounds(450, 251, 110, 24);
+        contentPane.add(states);
+
+        JButton btnNewButton_1 = new JButton("Update");
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 laboratoryNameText = labname.getText();
                 freeTimeText = freeTime.getText();
                 functionText = function.getText();
                 statesText = states.getSelectedItem().toString();
                 if (labname.getText() == null || "".equals(labname)) {
-                    JOptionPane.showMessageDialog(null, "请选择行！");
+                    JOptionPane.showMessageDialog(null, "Please select the line!");
                 } else {
 
                     Laboratory laboratory = new Laboratory(Integer.valueOf(id), laboratoryNameText, freeTimeText, functionText, statesText);
                     int i = laboratoryDao.UpdateLaboratory(laboratory);
                     if (i == 1) {
                         fillTable(null);
-                        JOptionPane.showMessageDialog(null, "修改成功");
+                        JOptionPane.showMessageDialog(null, "Success!");
                     }
                 }
             }
         });
-        btnNewButton_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        btnNewButton_1.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         btnNewButton_1.setBounds(98, 299, 93, 23);
         contentPane.add(btnNewButton_1);
 
-        JButton btnNewButton_2 = new JButton("删除");
+        JButton btnNewButton_2 = new JButton("Delete");
         btnNewButton_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (laboratoryNameText == null || "".equals(laboratoryNameText)) {
-                    JOptionPane.showMessageDialog(null, "请选择行！");
+                    JOptionPane.showMessageDialog(null, "Please select the line!");
                 } else {
                     int i = laboratoryDao.DeleteLaboratory(id);
                     int k = reserveDao.DeleteReserveByLa(laboratoryNameText);
                     fillTable(null);
-                    JOptionPane.showMessageDialog(null, "删除成功");
+                    JOptionPane.showMessageDialog(null, "Success!");
                 }
             }
         });
-        btnNewButton_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        btnNewButton_2.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         btnNewButton_2.setBounds(244, 299, 93, 23);
         contentPane.add(btnNewButton_2);
 
-        JButton btnNewButton_3 = new JButton("返回");
+        JButton btnNewButton_3 = new JButton("Previous");
         btnNewButton_3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
-        btnNewButton_3.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        btnNewButton_3.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         btnNewButton_3.setBounds(392, 299, 93, 23);
         contentPane.add(btnNewButton_3);
 
-        JLabel lblNewLabel_2 = new JLabel("状态：");
-        lblNewLabel_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        lblNewLabel_2.setBounds(455, 254, 62, 15);
-        contentPane.add(lblNewLabel_2);
-
-        function = new JTextField();
-        function.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        function.setBounds(362, 251, 83, 21);
-        contentPane.add(function);
-        function.setColumns(10);
-
-        states = new JComboBox();
-        states.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        states.setModel(new DefaultComboBoxModel(new String[]{"空闲", "占用"}));
-        states.setBounds(495, 251, 79, 21);
-        contentPane.add(states);
     }
 
     public void fillTable(String labname) {
         dm = (DefaultTableModel) table.getModel();
         dm.setRowCount(0);
         List<Laboratory> laboratorys = laboratoryDao.QueryLaboratory(labname);
-        /*for (Laboratory lab : laboratorys) {
-            Vector<Object> v = new Vector<>();
-            v.add(lab.getID());
-            v.add(lab.getLaboratoryName());
-            v.add(lab.getFreeTime());
-            v.add(lab.getFunction());
-            v.add(lab.getStates());
-            dm.addRow(v);
-        }*/
         LaboratoryContainer laboratoryContainer = new LaboratoryContainer();
         laboratoryContainer.list = laboratorys;
         Iterator iterator = laboratoryContainer.getIterator();
