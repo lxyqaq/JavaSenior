@@ -69,7 +69,7 @@ public class TeacherMainView extends JFrame {
      * Create the frame.
      */
     public TeacherMainView() {
-        setTitle("教师主界面");
+        setTitle("Teacher Main Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 552, 383);
         contentPane = new JPanel();
@@ -77,30 +77,30 @@ public class TeacherMainView extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("实验室预约审批");
-        lblNewLabel.setFont(new Font("方正舒体", Font.PLAIN, 20));
-        lblNewLabel.setBounds(191, 10, 140, 29);
+        JLabel lblNewLabel = new JLabel("Laboratory Appointment Approval");
+        lblNewLabel.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        lblNewLabel.setBounds(150, 10, 300, 29);
         contentPane.add(lblNewLabel);
 
-        JLabel label = new JLabel("实验室名称：");
-        label.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel label = new JLabel("Laboratory:");
+        label.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         label.setBounds(99, 66, 72, 15);
         contentPane.add(label);
 
         keyword = new JTextField();
-        keyword.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        keyword.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         keyword.setColumns(10);
         keyword.setBounds(203, 63, 107, 21);
         contentPane.add(keyword);
 
-        JButton search = new JButton("搜索");
+        JButton search = new JButton("Search");
         search.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String text = keyword.getText();
                 fillTable(text);
             }
         });
-        search.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        search.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         search.setBounds(355, 62, 72, 23);
         contentPane.add(search);
 
@@ -113,7 +113,6 @@ public class TeacherMainView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent arg0) {
                 int row = table.getSelectedRow();
-                // 获取点击行的实验室名称内容
                 ID = dm.getValueAt(row, 0) + "";
                 laboratoryName = (String) dm.getValueAt(row, 1);
                 StudentName = (String) dm.getValueAt(row, 2);
@@ -122,57 +121,54 @@ public class TeacherMainView extends JFrame {
                 stutext.setText(StudentName);
             }
         });
-        table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID", "实验室名称", "申请人", "状态", "结果"}) {
+        table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID", "Laboratory", "Applicant", "State", "Result"}) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         });
         fillTable(null);
         DefaultTableCellRenderer r = new DefaultTableCellRenderer();
-        //设置字体颜色粉红
         r.setBackground(Color.pink);
-        //设置单元格数据居中显示
         r.setHorizontalAlignment(JLabel.CENTER);
         table.setDefaultRenderer(Object.class, r);
-        //支持滚动
         scrollPane.setViewportView(table);
 
-        JLabel label_1 = new JLabel("实验室名称：");
-        label_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel label_1 = new JLabel("Laboratory:");
+        label_1.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         label_1.setBounds(10, 261, 72, 15);
         contentPane.add(label_1);
 
         labtext = new JTextField();
         labtext.setEditable(false);
-        labtext.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        labtext.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         labtext.setColumns(10);
         labtext.setBounds(84, 258, 90, 21);
         contentPane.add(labtext);
 
-        JLabel label_2 = new JLabel("申请人：");
-        label_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        label_2.setBounds(191, 261, 48, 15);
+        JLabel label_2 = new JLabel("Applicant:");
+        label_2.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        label_2.setBounds(191, 261, 72, 15);
         contentPane.add(label_2);
 
         stutext = new JTextField();
         stutext.setEditable(false);
-        stutext.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        stutext.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         stutext.setColumns(10);
-        stutext.setBounds(242, 258, 90, 21);
+        stutext.setBounds(252, 258, 90, 21);
         contentPane.add(stutext);
 
-        JLabel label_3 = new JLabel("审核：");
-        label_3.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        JLabel label_3 = new JLabel("Result:");
+        label_3.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         label_3.setBounds(362, 261, 42, 15);
         contentPane.add(label_3);
 
         statusComBox = new JComboBox();
-        statusComBox.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-        statusComBox.setModel(new DefaultComboBoxModel(new String[]{"同意", "拒绝"}));
-        statusComBox.setBounds(399, 258, 90, 21);
+        statusComBox.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        statusComBox.setModel(new DefaultComboBoxModel(new String[]{"Agree", "Refuse"}));
+        statusComBox.setBounds(399, 258, 90, 24);
         contentPane.add(statusComBox);
 
-        JButton audit = new JButton("审批");
+        JButton audit = new JButton("Confirm");
         audit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 if (ID == null) {
@@ -182,7 +178,7 @@ public class TeacherMainView extends JFrame {
                         while (table.getRowCount() > 0) {
                             dm.removeRow(0);
                         }
-                        if (statusComBox.getSelectedItem().toString().equals("同意")) {
+                        if (statusComBox.getSelectedItem().toString().equals("Agree")) {
                             int k = laboratoryDao.UpdateLaboratoryStates(laboratoryName);
                         }
                         int i = reserveDao.UpdateReserve(ID, statusComBox.getSelectedItem().toString());
@@ -196,11 +192,11 @@ public class TeacherMainView extends JFrame {
                 }
             }
         });
-        audit.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        audit.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         audit.setBounds(84, 311, 93, 23);
         contentPane.add(audit);
 
-        JButton back = new JButton("返回");
+        JButton back = new JButton("Previous");
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
@@ -209,7 +205,7 @@ public class TeacherMainView extends JFrame {
             }
         });
 
-        back.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        back.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         back.setBounds(396, 311, 93, 23);
         contentPane.add(back);
     }
@@ -219,15 +215,6 @@ public class TeacherMainView extends JFrame {
         dm = (DefaultTableModel) table.getModel();
         dm.setRowCount(0);
         List<Reserve> reserves = reserveDao.QueryReserve(labName);
-        /*for (Reserve reserve : reserves) {
-            Vector<Object> v = new Vector<>();
-            v.add(reserve.getID());
-            v.add(reserve.getLaboratoryName());
-            v.add(reserve.getStudentName());
-            v.add(reserve.getStates());
-            v.add(reserve.getResult());
-            dm.addRow(v);
-        }*/
         ReserveContainer reserveContainer = new ReserveContainer();
         reserveContainer.list = reserves;
         Iterator iterator = reserveContainer.getIterator();
