@@ -9,7 +9,7 @@ import com.company.impl.StudentImpl;
 import javax.swing.*;
 import java.util.List;
 
-public class Student implements Person,Iterator {
+public class Student implements Person, Iterator {
 
     public void accept(Visitor v) {
         v.visit(this);
@@ -22,7 +22,7 @@ public class Student implements Person,Iterator {
 
     @Override
     public boolean hasNext() {
-        if (position >= itemList.size()){
+        if (position >= itemList.size()) {
             return false;
         } else {
             return true;

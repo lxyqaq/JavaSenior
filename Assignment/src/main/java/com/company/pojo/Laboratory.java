@@ -15,7 +15,7 @@ public class Laboratory implements Iterator {
 
     @Override
     public boolean hasNext() {
-        if (position >= itemList.size()){
+        if (position >= itemList.size()) {
             return false;
         } else {
             return true;
