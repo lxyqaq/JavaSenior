@@ -81,6 +81,7 @@ public class StorageFrame extends JFrame {
         catCombox.addItem("Cigarette");
         catCombox.addItem("Snacks");
         catCombox.addItem("Household");
+        catCombox.addItem("All");
         catCombox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -175,11 +176,31 @@ public class StorageFrame extends JFrame {
     }
 
     public void filterCategory(int cat) {
+        ProductDao dao = new ProductDao();
         this.currCat = cat;
-        DefaultTableModel model = new DefaultTableModel(getData(currOrder), getRowNames());
-        storageTable.setModel(model);
-        storageTable.repaint();
-        storageTable.updateUI();
+        if (this.currCat == 7) {
+            Vector<Product> allProduct = dao.findAllProduct();
+            String[][] ret = new String[allProduct.size()][8];
+            for (int idx = 0; idx < allProduct.size(); idx++) {
+                ret[idx][0] = allProduct.get(idx).getProductId() + "";
+                ret[idx][1] = allProduct.get(idx).getProductNo();
+                ret[idx][2] = allProduct.get(idx).getCatogery() + "";
+                ret[idx][3] = allProduct.get(idx).getName();
+                ret[idx][4] = allProduct.get(idx).getPurPrice() + "";
+                ret[idx][5] = allProduct.get(idx).getPrice() + "";
+                ret[idx][6] = allProduct.get(idx).getStorage() + "";
+                ret[idx][7] = sdf.format(allProduct.get(idx).getStockDate());
+            }
+            DefaultTableModel model = new DefaultTableModel(ret, new String[]{"ID", "Product Number", "Categories", "Name", "Purchase price", "Price", "Stock", "Last purchase"});
+            storageTable.setModel(model);
+            storageTable.repaint();
+            storageTable.updateUI();
+        } else {
+            DefaultTableModel model = new DefaultTableModel(getData(currOrder), getRowNames());
+            storageTable.setModel(model);
+            storageTable.repaint();
+            storageTable.updateUI();
+        }
     }
 
     private String[] getRowNames() {

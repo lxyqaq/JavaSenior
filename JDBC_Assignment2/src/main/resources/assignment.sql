@@ -36,19 +36,19 @@ CREATE TABLE `product` (
 -- Records of product
 -- ----------------------------
 BEGIN;
-INSERT INTO `product` VALUES (1, '10001', 'Tea', 1, 3.5, 2.3, '2021-02-17', 20, 5);
-INSERT INTO `product` VALUES (2, '10002', 'Juice', 1, 3.5, 2.3, '2021-02-17', 70, 5);
-INSERT INTO `product` VALUES (3, '20001', 'Chocolate', 2, 4, 3.2, '2021-02-17', 108, 5);
-INSERT INTO `product` VALUES (4, '10003', 'Coffee', 1, 5.5, 3.8, '2021-02-17', 21, 10);
-INSERT INTO `product` VALUES (5, '40001', 'Marlboro', 4, 10.5, 7.4, '2021-02-17', 239, 10);
-INSERT INTO `product` VALUES (6, '30001', 'Red Wine', 3, 35, 24.8, '2021-02-17', 10, 5);
-INSERT INTO `product` VALUES (7, '10004', 'Cola', 1, 3, 1.8, '2021-02-17', 38, 10);
-INSERT INTO `product` VALUES (8, '30002', 'White wine', 3, 30, 20, '2021-02-18', 50, 5);
-INSERT INTO `product` VALUES (9, '50001', 'Crisps', 5, 7, 5, '2021-02-18', 100, 5);
-INSERT INTO `product` VALUES (10, '60001', 'Toilet paper', 6, 5, 4, '2021-02-18', 150, 5);
-INSERT INTO `product` VALUES (11, '50002', 'Potato chips', 5, 2, 1.7, '2021-02-18', 200, 5);
-INSERT INTO `product` VALUES (12, '60002', 'Mop', 6, 10, 9, '2021-02-18', 150, 5);
-INSERT INTO `product` VALUES (13, '40002', 'Winston', 4, 20, 15, '2021-02-18', 40, 5);
+INSERT INTO `product` VALUES (1, '10001', 'Tea', 1, 3.5, 2.3, '2021-03-17', 20, 5);
+INSERT INTO `product` VALUES (2, '10002', 'Juice', 1, 3.5, 2.3, '2021-03-17', 70, 5);
+INSERT INTO `product` VALUES (3, '20001', 'Chocolate', 2, 4, 3.2, '2021-03-17', 108, 5);
+INSERT INTO `product` VALUES (4, '10003', 'Coffee', 1, 5.5, 3.8, '2021-03-17', 21, 10);
+INSERT INTO `product` VALUES (5, '40001', 'Marlboro', 4, 10.5, 7.4, '2021-03-17', 239, 10);
+INSERT INTO `product` VALUES (6, '30001', 'Red Wine', 3, 35, 24.8, '2021-03-17', 10, 5);
+INSERT INTO `product` VALUES (7, '10004', 'Cola', 1, 3, 1.8, '2021-03-17', 38, 10);
+INSERT INTO `product` VALUES (8, '30002', 'White wine', 3, 30, 20, '2021-03-18', 50, 5);
+INSERT INTO `product` VALUES (9, '50001', 'Crisps', 5, 7, 5, '2021-03-18', 100, 5);
+INSERT INTO `product` VALUES (10, '60001', 'Toilet paper', 6, 5, 4, '2021-03-18', 150, 5);
+INSERT INTO `product` VALUES (11, '50002', 'Potato chips', 5, 2, 1.7, '2021-03-18', 200, 5);
+INSERT INTO `product` VALUES (12, '60002', 'Mop', 6, 10, 9, '2021-03-18', 150, 5);
+INSERT INTO `product` VALUES (13, '40002', 'Winston', 4, 20, 15, '2021-03-18', 40, 5);
 COMMIT;
 
 -- ----------------------------
@@ -117,17 +117,6 @@ INSERT INTO `stock_history` VALUES (5, 5, '2021-02-17', 19);
 INSERT INTO `stock_history` VALUES (6, 1, '2021-02-17', 10);
 INSERT INTO `stock_history` VALUES (7, 6, '2021-02-17', 8);
 COMMIT;
-
--- ----------------------------
--- Triggers structure for table sell_history
--- ----------------------------
-DROP TRIGGER IF EXISTS `testtwo`;
-delimiter ;;
-CREATE TRIGGER `testtwo` AFTER INSERT ON `sell_history` FOR EACH ROW BEGIN
-    UPDATE product SET storage = storage - NEW.quantity WHERE product_id = NEW.product_id;
-END
-;;
-delimiter ;
 
 -- ----------------------------
 -- Triggers structure for table stock_history

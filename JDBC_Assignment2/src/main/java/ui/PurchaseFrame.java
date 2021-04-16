@@ -85,7 +85,6 @@ public class PurchaseFrame extends JFrame {
 
         productCombox = new ProductComboBox(getOption(1));
         productCombox.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 clientContext.setCurrSelectedProduct();
@@ -153,7 +152,7 @@ public class PurchaseFrame extends JFrame {
 
     public Vector<ProductOption> getOption(int category) {
         ProductDao dao = new ProductDao();
-        Vector<ProductOption> ret = new Vector<ProductOption>();
+        Vector<ProductOption> ret = new Vector<>();
         Vector<Product> ps = dao.findProductByCategory(category);
         if (ps == null || ps.size() == 0) {
             ProductOption po = new ProductOption();
