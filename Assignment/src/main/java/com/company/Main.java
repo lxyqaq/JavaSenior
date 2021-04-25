@@ -29,7 +29,7 @@ public class Main extends JFrame {
 
     private Person student = new Student();
     private Person teacher = new Teacher();
-    private Person user = new User();
+    private Person user = new Admin();
 
     private List<Person> personList = new ArrayList<>();
 

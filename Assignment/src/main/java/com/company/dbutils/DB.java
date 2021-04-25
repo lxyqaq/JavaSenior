@@ -1,8 +1,8 @@
 package com.company.dbutils;
 
+import com.company.pojo.Admin;
 import com.company.pojo.Student;
 import com.company.pojo.Teacher;
-import com.company.pojo.User;
 
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -34,15 +34,15 @@ public class DB {
     }
 
     // 登录管理员账号
-    public static boolean Login(User user) {
+    public static boolean Login(Admin admin) {
         Connection connection = connect();
         String sql = "select * from user where account=? and password=?";
         PreparedStatement pre = null;
         boolean login = false;
         try {
             pre = connection.prepareStatement(sql);
-            pre.setString(1, user.getAccount());
-            pre.setString(2, user.getPassword());
+            pre.setString(1, admin.getAccount());
+            pre.setString(2, admin.getPassword());
             ResultSet set = pre.executeQuery();
             if (set.next()) {
                 login = true;
