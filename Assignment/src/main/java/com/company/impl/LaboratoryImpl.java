@@ -82,7 +82,7 @@ public class LaboratoryImpl implements LaboratoryDao {
     @Override
     public int UpdateLaboratory(Laboratory laboratory) {
         Connection connection = DB.connect();
-        String sql = "update laboratory set laboratoryName=?,freeTime=?,function=?,states=? where ID=?";
+        String sql = "update laboratory set laboratoryName=?,freeTime=?,`function`=?,states=? where ID=?";
         PreparedStatement pre = null;
         int i = 0;
         try {
